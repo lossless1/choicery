@@ -1,7 +1,7 @@
 {
-  "name": "nestjs-realworld-example-app",
+  "name": "Choicery project",
   "version": "1.0.0",
-  "description": "[![Build Status](https://travis-ci.org/anishkny/node-express-realworld-example-app.svg?branch=master)](https://travis-ci.org/anishkny/node-express-realworld-example-app)",
+  "description": "Default",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lujakob/nestjs-realworld-example-app.git"
+    "url": "git+https://github.com/lossless1/choicery.git"
   },
   "author": "lu.jakob@googlemail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lujakob/nestjs-realworld-example-app/issues"
+    "url": "https://github.com/lossless1/choicery/issues"
   },
-  "homepage": "https://github.com/lujakob/nestjs-realworld-example-app#readme",
+  "homepage": "https://github.com/lossless1/choicery#readme",
   "dependencies": {
     "@nestjs/common": "^6.0.1",
     "@nestjs/core": "^6.0.1",
