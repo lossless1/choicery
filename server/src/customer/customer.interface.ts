@@ -1,6 +1,6 @@
 import { ReferencePerson } from './model/reference.person';
 
-interface Customer {
+interface CustomerInterface {
     id: string;
     fullName: string
     email: string;

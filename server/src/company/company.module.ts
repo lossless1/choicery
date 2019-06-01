@@ -1,13 +1,9 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { CompanyController } from './company.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CompanyEntity } from './company.entity';
-import { Comment } from './comment.entity';
-import { UserEntity } from '../user/user.entity';
-import { FollowsEntity } from '../profile/follows.entity';
 import { CompanyService } from './company.service';
 import { AuthMiddleware } from '../user/auth.middleware';
-import { UserModule } from '../user/user.module';
+import { CompanyEntity } from './company.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CompanyEntity])],
@@ -25,6 +21,6 @@ export class CompanyModule implements NestModule {
         {path: 'companies', method: RequestMethod.POST},
         {path: 'companies/:id', method: RequestMethod.GET},
         {path: 'companies/:id', method: RequestMethod.DELETE},
-        {path: 'companies/:id', method: RequestMethod.PUT},
+        {path: 'companies/:id', method: RequestMethod.PUT});
   }
 }

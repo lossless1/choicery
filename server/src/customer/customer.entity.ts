@@ -1,10 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ObjectIdColumn } from 'typeorm';
-import { ArticleEntity } from './article.entity';
+import { Entity, Column, ObjectIdColumn } from 'typeorm';
 import { ReferencePerson } from './model/reference.person';
-import { Company } from '../../../client/src/app/core/models';
+import { CompanyEntity } from '../company/company.entity';
 
 @Entity()
-export class Customer {
+export class CustomerEntity {
 
     @ObjectIdColumn()
     id: string;
@@ -27,8 +26,8 @@ export class Customer {
     @Column()
     description: string;
 
-    @Column(type => Company)
-    company: Company;
+    @Column(type => CompanyEntity)
+    company: CompanyEntity;
 
     @Column(type => ReferencePerson)
     referencePerson: ReferencePerson;
@@ -39,9 +38,9 @@ export class Customer {
     @Column()
     order: number;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: string;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     updatedAt: string;
 }

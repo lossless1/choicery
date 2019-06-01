@@ -1,5 +1,5 @@
-interface Company {
-  _id: string;
+interface RequestInterface {
+  id: string;
   slug: string;
   name: string;
   host: string;

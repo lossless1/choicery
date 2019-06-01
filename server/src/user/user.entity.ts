@@ -1,8 +1,8 @@
 import { Entity, Column, BeforeInsert, ObjectIdColumn } from "typeorm";
-import { IsDate, IsEmail} from 'class-validator';
+import { IsEmail} from 'class-validator';
 import * as crypto from 'crypto';
 
-@Entity('user')
+@Entity('users')
 export class UserEntity {
 
   @ObjectIdColumn()
@@ -26,9 +26,9 @@ export class UserEntity {
     this.password = crypto.createHmac('sha256', this.password).digest('hex');
   }
 
-  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
   createdAt: string;
 
-  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
   updatedAt: string;
 }

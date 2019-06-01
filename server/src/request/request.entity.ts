@@ -1,8 +1,8 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
-import { Customer } from '../customer/customer.entity';
+import { CustomerEntity } from '../customer/customer.entity';
 
 @Entity('requests')
-export class Comment {
+export class RequestEntity {
     @ObjectIdColumn()
     id: number;
 
@@ -21,16 +21,16 @@ export class Comment {
     @Column()
     status: string;
 
-    @Column(type => Customer)
-    customer: Customer;
+    @Column(type => CustomerEntity)
+    customer: CustomerEntity;
 
     @Column()
     requestState: string;
 
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: string;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     updatedAt?: string;
 }

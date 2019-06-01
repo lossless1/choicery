@@ -10,6 +10,6 @@ export class ReferencePerson{
     @Column()
     phone: string;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: string;
 }
