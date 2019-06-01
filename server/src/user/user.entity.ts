@@ -1,23 +1,19 @@
-import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, JoinTable, ManyToMany, OneToMany} from "typeorm";
-import { IsEmail, Validate } from 'class-validator';
+import { Entity, Column, BeforeInsert, ObjectIdColumn } from "typeorm";
+import { IsDate, IsEmail} from 'class-validator';
 import * as crypto from 'crypto';
-import { ArticleEntity } from '../article/article.entity';
 
 @Entity('user')
 export class UserEntity {
 
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id: number;
 
   @Column()
-  username: string;
+  fullName: string;
 
   @Column()
   @IsEmail()
   email: string;
-
-  @Column({default: ''})
-  bio: string;
 
   @Column({default: ''})
   image: string;
@@ -30,10 +26,9 @@ export class UserEntity {
     this.password = crypto.createHmac('sha256', this.password).digest('hex');
   }
 
-  @ManyToMany(type => ArticleEntity)
-  @JoinTable()
-  favorites: ArticleEntity[];
+  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+  createdAt: string;
 
-  @OneToMany(type => ArticleEntity, article => article.author)
-  articles: ArticleEntity[];
+  @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP")
+  updatedAt: string;
 }

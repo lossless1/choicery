@@ -1,6 +1,6 @@
 import {Get, Post, Body, Put, Delete, Query, Param, Controller} from '@nestjs/common';
 import { Request } from 'express';
-import { ComapnyService } from './company.service';
+import { ComapnyService } from './customer.service';
 import { CreateCompanyDto } from './dto';
 import { CommentsRO } from './company.interface';
 import { User } from '../user/user.decorator';
@@ -16,7 +16,7 @@ import {
 @ApiBearerAuth()
 @ApiUseTags('company')
 @Controller('company')
-export class CompanyController {
+export class CustomerController {
 
   constructor(private readonly comapanyService: ComapnyService) {}
 

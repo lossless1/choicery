@@ -1,5 +1,5 @@
 {
-  "name": "Choicery project",
+  "name": "Choicery",
   "version": "1.0.0",
   "description": "Default",
   "main": "index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lossless1/choicery.git"
+    "url": "https://github.com/lossless1/choicery.git"
   },
   "author": "lu.jakob@googlemail.com",
   "license": "ISC",

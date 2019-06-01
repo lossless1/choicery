@@ -10,4 +10,10 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   readonly password: string;
+
+  @IsNotEmpty()
+  readonly fullName: string;
+
+  @IsNotEmpty()
+  readonly image: string;
 }

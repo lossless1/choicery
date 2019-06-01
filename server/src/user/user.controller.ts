@@ -14,18 +14,18 @@ import {
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('user')
+@ApiUseTags('users')
 @Controller()
 export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
-  @Get('user')
+  @Get('users')
   async findMe(@User('email') email: string): Promise<UserRO> {
     return await this.userService.findByEmail(email);
   }
 
-  @Put('user')
+  @Put('users')
   async update(@User('id') userId: number, @Body('user') userData: UpdateUserDto) {
     return await this.userService.update(userId, userData);
   }
@@ -36,7 +36,7 @@ export class UserController {
     return this.userService.create(userData);
   }
 
-  @Delete('users/:slug')
+  @Delete('users/:id')
   async delete(@Param() params) {
     return await this.userService.delete(params.slug);
   }

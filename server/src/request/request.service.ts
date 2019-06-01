@@ -10,7 +10,7 @@ import { CreateCompanyDto } from './dto';
 const slug = require('slug');
 
 @Injectable()
-export class CompanyService {
+export class RequestService {
   constructor(
     @InjectRepository(ComapanyEntity)
     private readonly companyRepository: Repository<CompanyEntity>,

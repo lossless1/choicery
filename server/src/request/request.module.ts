@@ -1,22 +1,22 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { CompanyController } from './company.controller';
+import { RequestController } from './request.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompanyEntity } from './company.entity';
 import { Comment } from './comment.entity';
 import { UserEntity } from '../user/user.entity';
 import { FollowsEntity } from '../profile/follows.entity';
-import { CompanyService } from './company.service';
+import { RequestService } from './request.service';
 import { AuthMiddleware } from '../user/auth.middleware';
 import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CompanyEntity])],
-  providers: [CompanyService],
+  providers: [RequestService],
   controllers: [
-    CompanyController
+    RequestController
   ]
 })
-export class CompanyModule implements NestModule {
+export class RequestModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
