@@ -9,18 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  * Platform and Environment providers/directives/pipes
  */
 import { environment } from 'environments/environment';
-import { ROUTES } from './app.routes';
-// App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 import { NoContentComponent } from './shared/no-content';
 
 import '../styles/styles.scss';
-import '../styles/headings.css';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
-import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { SharedModule } from './shared';
 import { CoreModule } from './core';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -37,8 +34,6 @@ const APP_PROVIDERS = [
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     NoContentComponent,
   ],
   /**

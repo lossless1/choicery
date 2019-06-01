@@ -13,9 +13,6 @@ export const ROOT_SELECTOR = 'app';
 @Component({
   selector: ROOT_SELECTOR,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
   template: `
     <main>
       <router-outlet></router-outlet>

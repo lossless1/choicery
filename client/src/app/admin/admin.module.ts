@@ -8,7 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { RequestsService } from './requests/requests.service';
 import { HomeService } from './home/home.service';
 import { CustomersService } from './customers/customers.service';
-import { SharedModule } from '../shared';
+import { FooterComponent, HeaderComponent, SharedModule } from '../shared';
 
 @NgModule({
   imports: [
@@ -18,6 +18,8 @@ import { SharedModule } from '../shared';
   exports: [],
   declarations: [
     AdminComponent,
+    HeaderComponent,
+    FooterComponent,
     CustomersComponent,
     HomeComponent,
     RequestsComponent,

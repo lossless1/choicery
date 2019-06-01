@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+// import '../../../assets/js/purpose.js';
 
 import { AppState } from '../../app.service';
 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit() {
     console.log('hello `Home` component');
+    import('../../../assets/js/purpose.js');
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */

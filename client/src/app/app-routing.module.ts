@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { NoContentComponent } from './shared/no-content';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  {
-    path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
-  },
-  {path: '**', component: NoContentComponent},
+  { path: '',   redirectTo: '/requests', pathMatch: 'full' },
+  // {
+  //   path: 'admin',
+  //   component: '',
+  //
+  //   loadChildren: './admin/admin.module#AdminModule'
+  // },
+  {path: '**', redirectTo: '/login'},
 ];
 
 @NgModule({

@@ -60,3 +60,5 @@ function _domReadyHandler() {
  document.removeEventListener('DOMContentLoaded', _domReadyHandler, false);
  main();
 }
+
+// TODO Solve problem with graphics
