@@ -1,24 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, getRepository, DeleteResult } from 'typeorm';
-import { CompanyEntity } from './company.entity';
-import { Comment } from './comment.entity';
+import { Repository, getRepository, DeleteResult, ObjectIdColumn, Column } from 'typeorm';
+import { RequestEntity } from './request.entity';
+import { RequestDto } from './dto/request.dto';
 import { UserEntity } from '../user/user.entity';
-import { FollowsEntity } from '../profile/follows.entity';
-import { CreateCompanyDto } from './dto';
+import { CustomerEntity } from '../customer/customer.entity';
+import { CustomerService } from '../customer/customer.service';
 
 const slug = require('slug');
 
 @Injectable()
 export class RequestService {
   constructor(
-    @InjectRepository(ComapanyEntity)
-    private readonly companyRepository: Repository<CompanyEntity>,
+    @InjectRepository(RequestEntity)
+    private readonly requestRepository: Repository<RequestEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+    private readonly customerService: CustomerService,
   ) {}
 
   async findAll(query): Promise<any> {
 
-    const qb = await getRepository(CompanyEntity)
+    const qb = await getRepository(RequestEntity)
       .createQueryBuilder('company')
 
     qb.where("1 = 1");
@@ -56,34 +59,39 @@ export class RequestService {
   }
 
   async findOne(where): Promise<any> {
-    const company = await this.companyRepository.findOne(where);
+    const company = await this.requestRepository.findOne(where);
     return {company};
   }
 
-  async create(userId: number, companyData: CreateCompanyDto): Promise<CompanyEntity> {
+  async create(userId: number, requestData: RequestDto): Promise<RequestEntity> {
 
-    let company = new CompanyEntity();
-    company.title = companyData.title;
-    company.description = companyData.description;
-    company.slug = this.slugify(companyData.title);
-    company.tagList = companyData.tagList || [];
-    company.comments = [];
+    let request = new RequestEntity();
+    request.fullName = requestData.fullName;
 
-    const newCompany = await this.companyRepository.save(company);
+    request.companyName = requestData.companyName;
 
-    return newCompany;
+    request.companyDetails = requestData.companyDetails;
+    request.email = requestData.email;
+
+    request.status = requestData.status;
+
+    request.customer = await this.customerService.findOne(requestData.customerId);
+
+    request.requestState = requestData.requestState;
+
+    return await this.requestRepository.save(request);
 
   }
 
   async update(id: string, companyData: any): Promise<any> {
-    let toUpdate = await this.companyRepository.findOne({ slug: slug});
+    let toUpdate = await this.requestRepository.findOne({ slug: slug});
     let updated = Object.assign(toUpdate, companyData);
-    const company = await this.companyRepository.save(updated);
+    const company = await this.requestRepository.save(updated);
     return {company};
   }
 
   async delete(slug: string): Promise<DeleteResult> {
-    return await this.companyRepository.delete({ slug: slug});
+    return await this.requestRepository.delete({ slug: slug});
   }
 
   slugify(title: string) {

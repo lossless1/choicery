@@ -1,46 +1,46 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository, DeleteResult } from 'typeorm';
-import { CompanyEntity } from './company.entity';
-import { Comment } from './comment.entity';
 import { UserEntity } from '../user/user.entity';
-import { FollowsEntity } from '../profile/follows.entity';
-import { CreateCompanyDto } from './dto';
+import { CustomerEntity } from './customer.entity';
+import { CreateCustomerDto } from './dto/create.customer.dto';
 
 const slug = require('slug');
 
 @Injectable()
 export class CustomerService {
   constructor(
-    @InjectRepository(ComapanyEntity)
-    private readonly companyRepository: Repository<CompanyEntity>,
+    @InjectRepository(CustomerEntity)
+    private readonly customerRepository: Repository<CustomerEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   async findAll(query): Promise<any> {
 
-    const qb = await getRepository(CompanyEntity)
-      .createQueryBuilder('company')
+    const qb = await getRepository(CustomerEntity)
+      .createQueryBuilder('customer')
 
     qb.where("1 = 1");
 
     if ('tag' in query) {
-      qb.andWhere("company.tagList LIKE :tag", { tag: `%${query.tag}%` });
+      qb.andWhere("customer.tagList LIKE :tag", { tag: `%${query.tag}%` });
     }
 
     if ('author' in query) {
       const author = await this.userRepository.findOne({username: query.author});
-      qb.andWhere("company.authorId = :id", { id: author.id });
+      qb.andWhere("customer.authorId = :id", { id: author.id });
     }
 
     if ('favorited' in query) {
       const author = await this.userRepository.findOne({username: query.favorited});
       const ids = author.favorites.map(el => el.id);
-      qb.andWhere("company.authorId IN (:ids)", { ids });
+      qb.andWhere("customer.authorId IN (:ids)", { ids });
     }
 
-    qb.orderBy('company.created', 'DESC');
+    qb.orderBy('customer.created', 'DESC');
 
-    const companyCount = await qb.getCount();
+    const customerCount = await qb.getCount();
 
     if ('limit' in query) {
       qb.limit(query.limit);
@@ -52,38 +52,33 @@ export class CustomerService {
 
     const companies = await qb.getMany();
 
-    return {companies, companyCount};
+    return {companies, customerCount};
   }
 
-  async findOne(where): Promise<any> {
-    const company = await this.companyRepository.findOne(where);
-    return {company};
+  async findOne(id): Promise<CustomerEntity> {
+    return await this.customerRepository.findOne(id);
   }
 
-  async create(userId: number, companyData: CreateCompanyDto): Promise<CompanyEntity> {
+  async create(userId: number, customerData: CreateCustomerDto): Promise<CustomerEntity> {
 
-    let company = new CompanyEntity();
-    company.title = companyData.title;
-    company.description = companyData.description;
-    company.slug = this.slugify(companyData.title);
-    company.tagList = companyData.tagList || [];
-    company.comments = [];
+    let customer = new CustomerEntity();
+    customer.title = customerData.title;
+    customer.description = customerData.description;
+    customer.slug = this.slugify(customerData.title);
+    customer.tagList = customerData.tagList || [];
+    customer.comments = [];
 
-    const newCompany = await this.companyRepository.save(company);
-
-    return newCompany;
-
+    return await this.customerRepository.save(customer);
   }
 
-  async update(id: string, companyData: any): Promise<any> {
-    let toUpdate = await this.companyRepository.findOne({ slug: slug});
-    let updated = Object.assign(toUpdate, companyData);
-    const company = await this.companyRepository.save(updated);
-    return {company};
+  async update(id: string, customerData: any): Promise<any> {
+    let toUpdate = await this.customerRepository.findOne({ slug: slug});
+    let updated = Object.assign(toUpdate, customerData);
+    return await this.customerRepository.save(updated);
   }
 
   async delete(slug: string): Promise<DeleteResult> {
-    return await this.companyRepository.delete({ slug: slug});
+    return await this.customerRepository.delete({slug});
   }
 
   slugify(title: string) {

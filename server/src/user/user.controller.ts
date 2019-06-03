@@ -18,6 +18,11 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
+  @Get('usersss')
+  async finduser(){
+    console.log('users');
+  }
+
   @Get('users')
   async findMe(@User('email') email: string): Promise<UserRO> {
     console.log('users');

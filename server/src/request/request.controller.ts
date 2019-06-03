@@ -1,10 +1,8 @@
 import {Get, Post, Body, Put, Delete, Query, Param, Controller} from '@nestjs/common';
 import { Request } from 'express';
-import { ComapnyService } from './request.service';
+import { RequestService } from './request.service';
 import { CreateCompanyDto } from './dto';
-import { CommentsRO } from './company.interface';
 import { User } from '../user/user.decorator';
-import { CompanyInterface } from './company.interface';
 
 import {
   ApiUseTags,
@@ -18,20 +16,20 @@ import {
 @Controller('company')
 export class RequestController {
 
-  constructor(private readonly comapanyService: ComapnyService) {}
+  constructor(private readonly requestService: RequestService) {}
 
   @ApiOperation({ title: 'Get all companies' })
   @ApiResponse({ status: 200, description: 'Return all companies.'})
   @Get()
-  async findAll(@Query() query): Promise<CompanyInterface[]> {
-    return await this.comapanyService.findAll(query);
+  async findAll(@Query() query): Promise<RequestInterface[]> {
+    return await this.requestService.findAll(query);
   }
 
   @ApiOperation({ title: 'Get all companies' })
   @ApiResponse({ status: 200, description: 'Return one company.'})
   @Get(':id')
   async findOne(@Param('id') id): Promise<any> {
-    return await this.comapanyService.findOne({id});
+    return await this.requestService.findOne({id});
   }
 
   @ApiOperation({ title: 'Create company' })
@@ -39,7 +37,7 @@ export class RequestController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Post()
   async create(@User('id') userId: number, @Body('company') comapanyData: CreateCompanyDto) {
-    return this.comapanyService.create(userId, comapanyData);
+    return this.requestService.create(userId, comapanyData);
   }
 
   @ApiOperation({ title: 'Update company' })
@@ -48,7 +46,7 @@ export class RequestController {
   @Put(':id')
   async update(@Param() params, @Body('company') comapanyData: CreateCompanyDto) {
     // Todo: update id also when title gets changed
-    return this.comapanyService.update(params.id, comapanyData);
+    return this.requestService.update(params.id, comapanyData);
   }
 
   @ApiOperation({ title: 'Delete company' })
@@ -56,6 +54,6 @@ export class RequestController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':id')
   async delete(@Param() params) {
-    return this.comapanyService.delete(params.id);
+    return this.requestService.delete(params.id);
   }
 }
