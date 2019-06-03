@@ -35,7 +35,7 @@ export class UserService {
 
     // check uniqueness of username/email
     const { email, password, fullName, position, username, companyId } = dto;
-    const user = await this.findOne(new LoginUserDto(email, password));
+    const user = await this.findOne(new LoginUserDto(email, password, companyId));
     console.log(user);
     if (user) {
       const errors = { username: 'Username and email must be unique.' };
@@ -107,6 +107,8 @@ export class UserService {
       username: user.username,
       email: user.email,
       token: this.generateJWT(user),
+      fullName: user.fullName,
+      position: user.position
     };
   }
 }

@@ -58,16 +58,16 @@ var Layout = (function () {
 
   $(window).on({
     'load resize': function () {
-      if ($(window).width() < 1200) {
+      // if ($(window).width() < 1200) {
         unpinSidenav($('.sidenav-toggler'));
 
-      } else {
-        if ($sidenavState == 'pinned') {
-          pinSidenav($('.sidenav-toggler'));
-        } else if ($sidenavState == 'unpinned') {
-          unpinSidenav($('.sidenav-toggler'));
-        }
-      }
+      // } else {
+      //   if ($sidenavState == 'pinned') {
+      //     pinSidenav($('.sidenav-toggler'));
+      //   } else if ($sidenavState == 'unpinned') {
+      //     unpinSidenav($('.sidenav-toggler'));
+      //   }
+      // }
     }
   })
 

@@ -28,9 +28,10 @@ export class UserService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      this.apiService.get('/user')
+      console.log(this.jwtService.getToken());
+      this.apiService.get('/users')
         .subscribe(
-          data => this.setAuth(data.user),
+          user => this.setAuth(user),
           err => this.purgeAuth()
         );
     } else {
@@ -58,11 +59,12 @@ export class UserService {
   }
 
   attemptAuth(credentials): Observable<User> {
-    return this.apiService.post('users/login', {user: credentials})
+    return this.apiService.post('/users/login', {user: credentials})
       .pipe(map(
-        data => {
-          this.setAuth(data.user);
-          return data;
+        user => {
+          console.log(user);
+          this.setAuth(user);
+          return user;
         }
       ));
   }
@@ -70,9 +72,9 @@ export class UserService {
   attemptRegister(credentials): Observable<User> {
     return this.apiService.post('/users/register', {user: credentials})
       .pipe(map(
-        data => {
-          this.setAuth(data.user);
-          return data;
+        user => {
+          this.setAuth(user);
+          return user;
         }
       ));
   }
@@ -82,13 +84,12 @@ export class UserService {
   }
 
   // Update the user on the server (email, pass, etc)
-  update(user): Observable<User> {
-    return this.apiService
-      .put('/user', {user})
-      .pipe(map(data => {
+  update(updatedUser): Observable<User> {
+    return this.apiService.put('/users', {user: updatedUser})
+      .pipe(map(user => {
         // Update the currentUser observable
-        this.currentUserSubject.next(data.user);
-        return data.user;
+        this.currentUserSubject.next(user);
+        return user;
       }));
   }
 

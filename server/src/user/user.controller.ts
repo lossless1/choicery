@@ -48,7 +48,7 @@ export class UserController {
     if (!_user) throw new HttpException({errors}, 401);
 
     const token = await this.userService.generateJWT(_user);
-    const {email, username} = _user;
-    return {email, token, username}
+    const {email, username, fullName, position} = _user;
+    return {email, token, username, fullName, position}
   }
 }

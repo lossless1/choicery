@@ -9,7 +9,7 @@ enableProdMode();
 
 export const environment: Environment = {
   production: true,
-  api_url: 'http:/localhost:8000',
+  api_url: 'http://localhost:4000/api/v1////',
   showDevModule: false,
 
   /** Angular debug tools in the dev console

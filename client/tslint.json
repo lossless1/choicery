@@ -29,6 +29,8 @@
     "use-input-property-decorator": true,
     "use-life-cycle-interface": true,
     "use-output-property-decorator": true,
+    "arrow-parens": false,
+    "member-access": false,
     "use-pipe-transform-interface": true,
     "no-console": [true,
       "time",

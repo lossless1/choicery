@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     this.isSubmitting = true;
     this.errors = {errors: {}};
 
-    const credentials = this.authForm.value;
+    const credentials = {...this.authForm.value, companyId: '123'};
     this.userService
       .attemptAuth(credentials)
       .subscribe(
