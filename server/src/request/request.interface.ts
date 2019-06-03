@@ -1,11 +1,14 @@
-interface RequestInterface {
+import { CustomerEntity } from '../customer/customer.entity';
+
+export interface RequestInterface {
   id: string;
-  slug: string;
-  name: string;
-  host: string;
-  description: string;
-  avatarUrl: string;
-  password: string;
-  createdAt?: Date;
+  fullName: string;
+  companyName: string;
+  companyDetails: string;
+  email: string;
+  status: string;
+  customer: CustomerEntity;
+  requestState: string;
+  createdAt: Date;
   updatedAt?: Date;
 }

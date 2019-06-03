@@ -1,6 +1,6 @@
 import { ReferencePerson } from './model/reference.person';
 
-interface CustomerInterface {
+export interface CustomerInterface {
     id: string;
     fullName: string
     email: string;
@@ -8,7 +8,7 @@ interface CustomerInterface {
     city: string;
     country: string;
     description: string;
-    company: Company;
+    company: CompanyInterface;
     referencePerson: ReferencePerson;
     contactDetails: string;
     order: number;

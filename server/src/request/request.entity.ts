@@ -4,18 +4,18 @@ import { CustomerEntity } from '../customer/customer.entity';
 @Entity('requests')
 export class RequestEntity {
     @ObjectIdColumn()
-    id: number;
+    id: string;
 
     @Column()
     fullName: string;
-    @Column()
 
+    @Column()
     companyName: string;
-    @Column()
 
+    @Column()
     companyDetails: string;
-    @Column()
 
+    @Column()
     email: string;
 
     @Column()

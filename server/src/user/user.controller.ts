@@ -11,35 +11,38 @@ import {
 import { User } from './user.decorator';
 import { UserRO } from './dto/user.ro';
 
-@Controller()
+@ApiBearerAuth()
+@ApiUseTags('users')
+@Controller('users')
 export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
 
-  @Get('users')
+  @Get()
   async findMe(@User('email') email: string): Promise<UserRO> {
+    console.log(email);
     return await this.userService.findByEmail(email);
   }
 
-  @Put('users')
+  @Put()
   async update(@User('id') userId: number, @Body('user') userData: UpdateUserDto) {
     return await this.userService.update(userId, userData);
   }
 
   @UsePipes(new ValidationPipe())
-  @Post('users')
+  @Post()
   async create(@Body('user') userData: CreateUserDto) {
     return this.userService.create(userData);
   }
 
-  @Delete('users/:id')
+  @Delete(':id')
   async delete(@Param() params) {
     return await this.userService.delete(params.slug);
   }
 
   @UsePipes(new ValidationPipe())
-  @Post('users/login')
+  @Post('login')
   async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
     const _user: UserEntity = await this.userService.findOne(loginUserDto);
 
