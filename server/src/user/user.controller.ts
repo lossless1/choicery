@@ -19,7 +19,6 @@ export class UserController {
 
   @Get('users')
   async findMe(@User('email') email: string): Promise<UserRO> {
-    console.log('users');
     return await this.userService.findByEmail(email);
   }
 

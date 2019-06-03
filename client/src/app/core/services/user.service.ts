@@ -7,14 +7,12 @@ import { JwtService } from './jwt.service';
 import { User } from '../models';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 
-
 @Injectable()
 export class UserService {
-  private currentUserSubject = new BehaviorSubject<User>({} as User);
-  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
-
-  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
+  public isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  public currentUserSubject = new BehaviorSubject<User>({} as User);
+  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
   constructor(
     private apiService: ApiService,

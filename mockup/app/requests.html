@@ -11,14 +11,13 @@
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
   <!-- Font Awesome 5 -->
   <link rel="stylesheet" href="../assets/libs/@fortawesome/fontawesome-free/css/all.min.css"><!-- Page CSS -->
-  <link rel="stylesheet" href="../assets/libs/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="../assets/libs/select2/dist/css/select2.min.css">  
   <!-- Purpose CSS -->
   <link rel="stylesheet" href="../assets/css/purpose.css" id="stylesheet">
-  <link rel="stylesheet" href="../assets/css/custom.css" id="custom-stylesheet">
 </head>
 
 <body class="application application-offset">
-
+  
   <!-- Application container -->
   <div class="container-fluid container-application">
     <!-- Sidenav -->
@@ -49,7 +48,6 @@
           <div class="mt-4">
             <h5 class="mb-0 text-white">Alex Krasnov</h5>
             <span class="d-block text-sm text-white opacity-8 mb-3">Manager</span>
-
             <a href="#" class="btn btn-sm btn-white btn-icon rounded-pill shadow hover-translate-y-n3">
               <span class="btn-inner--icon"><i class="fas fa-coins"></i></span>
               <span class="btn-inner--text">Trial</span>
@@ -77,6 +75,7 @@
           <span class="btn-inner--icon d-block pt-2">Home</span>
         </a>
         <a href="../app/requests.html" class="btn btn-square text-sm active">
+          <span class="badge badge-pill badge-requests">3</span>
           <span class="btn-inner--icon d-block"><i class="fas fa-tasks fa-2x"></i></span>
           <span class="btn-inner--icon d-block pt-2">Requests</span>
         </a>
@@ -98,77 +97,80 @@
         </a>
       </div>
       <!-- Misc area -->
-
+      
     </div>
     <!-- Content -->
     <div class="main-content position-relative">
       <!-- Main nav -->
-
+      
       <!-- Page content -->
       <div class="page-content">
         <!-- Create project modal -->
         <div class="modal fade modal-add" id="modal-project-create" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                <div class="form-group">
-                  <label class="form-control-label">
-                    Name
-                  </label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label class="form-control-label">
-                    Company
-                  </label>
-                  <input type="text" class="form-control">
-                </div>
-                <!-- Project description -->
-                <div class="form-group">
-                  <label class="form-control-label mb-0">
-                    Description
-                  </label>
-                  <small class="form-text text-muted mb-2 mt-0">
-                    Please, describe what kind of feedback are you expexting to get
-                  </small>
-                  <textarea class="form-control" data-toggle="autosize" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-control-label">
-                    Customer
-                  </label>
-                  <select class="custom-select">
-                      <option selected>Select customer...</option>
-                      <option value="Cigna">Cigna</option>
-                      <option value="Vision X">Vision X</option>
-                      <option value="Envision">Envision</option>
-                      <option value="CVS/Caremark">CVS/Caremark</option>
-                      <option value="OptumRx">OptumRx</option>
-                      <option value="Argus">Argus</option>
-                  </select>
-                </div>
-
-
-                <div class="form-group">
-                  <div>
-                    <label class="form-control-label">
-                      Type
-                    </label>
+                <form>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Company name</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Company website</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
                   </div>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-primary">
-                        <input type="checkbox" name="options" id="checkboxButton2" autocomplete="off"> Text chat
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="checkbox" name="options" id="checkboxButton3" autocomplete="off"> Phone call
-                    </label>
-                    <label class="btn btn-primary active">
-                        <input type="checkbox" name="options" id="checkboxButton4" autocomplete="off" checked> Video call
-                    </label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Fullname</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Position</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
                   </div>
-                </div>
-
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                          <label class="form-control-label">Customer</label>
+                          <select class="form-control select2-customers" data-toggle="select">
+                              <option value="Argus">Argus</option>
+                              <option value="Cigna">Cigna</option>
+                              <option value="Vision X">Vision X</option>
+                              <option value="Envision">Envision</option>
+                              <option value="CVS/Caremark">CVS/Caremark</option>
+                              <option value="OptumRx">OptumRx</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label mb-0">Contacts</label>
+                        <small class="form-text text-muted mb-2 mt-0">Any preferred contact way</small>
+                        <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label mb-0">Description</label>
+                        <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is needed</small>
+                        <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-dismiss="modal">Cancel</button>
@@ -183,11 +185,14 @@
             <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
               <!-- Page title + Go Back button -->
               <div class="d-inline-block">
-                <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">Requests</h5>
+                <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
+                  <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+                  Requests
+                </h5>
               </div>
               <!-- Additional info -->
               <div class="align-items-center ml-4 d-inline-flex">
-                <span class="h4 text-info mb-0 mr-2">12</span>
+                <span class="h4 text-info mb-0 mr-2">48</span>
                 <span class="text-sm opacity-7 text-white mr-2"> in total. </span>
                 <span class="h4 text-info mb-0 mr-2">3</span>
                 <span class="text-sm opacity-7 text-white"> are new!</span>
@@ -268,128 +273,396 @@
               <thead>
                 <tr>
                   <th scope="col" class="sort" data-sort="id">ID</th>
-                  <th scope="col" class="sort" data-sort="name">Name</th>
+                  <th scope="col" class="sort" data-sort="name">Fullname</th>
                   <th scope="col" class="sort" data-sort="company">Company</th>
-                  <th scope="col" class="sort" data-sort="status">Status</th>
                   <th scope="col" class="sort" data-sort="customer">Customer</th>
+                  <th scope="col" class="sort" data-sort="status">Status</th>
                   <th scope="col" class="text-right">Action</th>
                 </tr>
               </thead>
               <tbody class="list">
-                <tr>
-                  <th scope="row"><a href="overview.html" class="name mb-0 h6 text-sm">134/01</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Ariana Barros</a></td>
-                  <td class="company">Intalere</td>
-                  <td class="status"><span class="badge badge-primary rounded-pill">New</span></td>
-                  <td class="customer">Cigna</td>
+                <tr class="row-status-todo">
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1053</a></th>
+                  <td class="name">
+                    <div class="media-body">
+                      <a href="requests/details.html" class="name h6 mb-0 text-sm">Ariana Barros</a>
+                      <small class="d-block font-weight-bold">Product Manager</small>
+                    </div>
+                  </td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Intalere
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Cigna
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-todo">
+                      <a href="#" class="" id="status-row-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-1">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row-status-todo">
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1052</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Emlen Beaver</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    RDF Robots
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Vision X
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-todo">
+                      <a href="#" class="" id="status-row-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-2">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <div class="actions">
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row-status-todo">
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1051</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Hu Guiying</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Innovate Me
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Envision
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-todo">
+                      <a href="#" class="" id="status-row-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-3">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <div class="actions">
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="overview.html" class="name mb-0 h6 text-sm">134/02</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Emlen Beaver</a></td>
-                  <td class="company">R&D Go</td>
-                  <td class="status"><span class="badge badge-primary rounded-pill">New</span></td>
-                  <td class="customer">Vision X</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1050</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Izumi Katsuyoshi</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    HPG Group
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    CVS/Caremark
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-open">
+                      <a href="#" class="" id="status-row-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-4">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/03</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Hu Guiying</a></td>
-                  <td class="company">Innovatix</td>
-                  <td class="status"><span class="badge badge-primary rounded-pill">New</span></td>
-                  <td class="customer">Envision</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1049</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Karlien Nijhuis</a></td>
+                   <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Rome Farmers
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    OptumRx
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-scheduled">
+                      <a href="#" class="" id="status-row-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-5">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/04</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Izumi Katsuyoshi</a></td>
-                  <td class="company">HPG</td>
-                  <td class="status"><span class="badge badge-warning rounded-pill">Open</span></td>
-                  <td class="customer">CVS/Caremark</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1048</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Mónica Ribeiro</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    MHA
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    OptumRx
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-open">
+                      <a href="#" class="" id="status-row-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-6">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/05</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Karlien Nijhuis</a></td>
-                  <td class="company">ROi</td>
-                  <td class="status"><span class="badge badge-warning rounded-pill">Open</span></td>
-                  <td class="customer">OptumRx</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1047</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Thanawan Chadee</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Express Scripts
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Argus
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-open">
+                      <a href="#" class="" id="status-row-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-7">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/06</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Mónica Ribeiro</a></td>
-                  <td class="company">MHA</td>
-                  <td class="status"><span class="badge badge-warning rounded-pill">Open</span></td>
-                  <td class="customer">OptumRx</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1046</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Yvonne Knight</a></td>
+                 <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Vizient
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Citizens Rx
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-canceled">
+                      <a href="#" class="" id="status-row-8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-8">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/07</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Thanawan Chadee</a></td>
-                  <td class="company">Express Scripts</td>
-                  <td class="status"><span class="badge badge-warning rounded-pill">Open</span></td>
-                  <td class="customer">Argus</td>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1045</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">Knight Yvonne</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Runner Pro
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Winter Oils
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-done">
+                      <a href="#" class="" id="status-row-9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-9">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/09</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Yvonne Knight</a></td>
-                  <td class="company">Vizient</td>
-                  <td class="status"><span class="badge badge-danger rounded-pill">Failed</span></td>
-                  <td class="customer">Citizens Rx</td>
-                  <td class="text-right">
-                    <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                  <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">1044</a></th>
+                  <td class="name"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">George Nightgen</a></td>
+                  <td class="company">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    Sigma 4DX
+                  </td>
+                  <td class="customer">
+                    <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    BigFolks
+                  </td>
+                  <td class="status">
+                    <div class="dropdown status-scheduled">
+                      <a href="#" class="" id="status-row-10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
+                        <div class="dropdown-menu" aria-labelledby="status-row-10">
+                            <a class="dropdown-item status-link-todo" href="#"><span class="status-circule status-todo"></span> ToDo</a>
+                            <a class="dropdown-item status-link-open" href="#"><span class="status-circule status-open"></span> Open</a>
+                            <a class="dropdown-item status-link-scheduled" href="#"><span class="status-circule status-scheduled"></span> Scheduled</a>
+                            <a class="dropdown-item status-link-done" href="#"><span class="status-circule status-done"></span> Done</a>
+                            <a class="dropdown-item status-link-canceled" href="#"><span class="status-circule status-canceled"></span> Canceled</a>
+                        </div>
+                      </a>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row"><a href="request_details.html" class="name mb-0 h6 text-sm">134/10</a></th>
-                  <td class="name"><a href="request_details.html" class="name mb-0 h6 text-sm">Knight Yvonne</a></td>
-                  <td class="company">Runner Pro</td>
-                  <td class="status"><span class="badge badge-success rounded-pill">Success</span></td>
-                  <td class="customer">Winter Oils</td>
                   <td class="text-right">
                     <div class="actions">
-                      <a href="#" class="action-item mr-2" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="action-item text-danger mr-2" data-toggle="tooltip" title="Move to trash"><i class="fas fa-trash"></i></a>
+                      <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right" title="Description" data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right" title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
+                        <i class="far fa-id-card"></i>
+                      </a>
+                      <span class="action-separator pl-3 pr-3">|</span>
+                      <a href="#" class="action-item text-danger"><i class="fas fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -397,14 +670,26 @@
             </table>
           </div>
         </div>
-        <!-- Load more -->
-        <div class="mt-4 text-center">
-          <a href="#" class="btn btn-sm btn-neutral rounded-pill shadow hover-translate-y-n3">Load more ...</a>
-        </div>
-      </div>
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>      
     </div>
   </div>
-
+  
   <div class="container">
     <div class="footer pt-5 pb-4 footer-light" id="footer-main">
       <div class="row text-center text-sm-left align-items-sm-center">
@@ -436,7 +721,7 @@
   <script src="../assets/libs/progressbar.js/dist/progressbar.min.js"></script>
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/moment/min/moment.min.js"></script>
-  <script src="../assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+  <script src="../assets/libs/select2/dist/js/select2.min.js"></script>
   <!-- Purpose JS -->
   <script src="../assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->

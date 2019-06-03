@@ -6,6 +6,8 @@
 'use strict';
 
 $(document).ready(function() {
+    $('.select2-customers').select2();
+  
     $('[data-toggle="sweet-alert"]').on('click', function(){
         var type = $(this).data('sweet-alert');
 

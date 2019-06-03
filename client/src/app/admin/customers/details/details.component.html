@@ -1,0 +1,207 @@
+<div class="main-content position-relative">
+  <!-- Main nav -->
+
+  <!-- Page content -->
+  <div class="page-content">
+    <!-- Page title -->
+    <div class="page-title mt-4 pt-2">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+          <!-- Page title + Go Back button -->
+          <div class="d-inline-block">
+            <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
+              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+              Customer details
+            </h5>
+          </div>
+          <!-- Additional info -->
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-end">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 order-lg-2">
+        <div class="card">
+          <div class="list-group list-group-flush">
+            <div class="list-group-item active">
+              <div class="media">
+                <i class="fas fa-user"></i>
+                <div class="media-body ml-3">
+                  <a href="../../app/customers/details.html" class="stretched-link h6 mb-1">Settings</a>
+                  <p class="mb-0 text-sm">Company information details</p>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="media">
+                <i class="fas fa-file-invoice"></i>
+                <div class="media-body ml-3">
+                  <a href="../../app/customers/history.html" class="stretched-link h6 mb-1">Requests history</a>
+                  <p class="mb-0 text-sm">Previous requests and calls</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="list-group-item">
+              <div class="media">
+                <i class="fas fa-chart-bar"></i>
+                <div class="media-body ml-3">
+                  <a href="../../app/customers/reports.html" class="stretched-link h6 mb-1">Reports</a>
+                  <p class="mb-0 text-sm">Calls results analitics</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 order-lg-1">
+        <div class="card">
+          <div class="card-header">
+            <h5 class=" h6 mb-0">Company details</h5>
+          </div>
+          <!-- New address -->
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label">Company name</label>
+                    <input class="form-control" required="" name="company" type="text" value="Choicery">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group logo-upload">
+                    <label class="form-control-label">Logo</label>
+                    <input type="file" name="file-1[]" id="file-1" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                    <label for="file-1">
+                      <i class="fa fa-upload"></i>
+                      <img src="../../assets/img/brand/dark.png" alt="logo" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">City</label>
+                    <input class="form-control" required="" name="city" type="text">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">County</label>
+                    <input class="form-control" required="" name="county" type="text">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h5 class=" h6 mb-0">Reference Details</h5>
+          </div>
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <!-- Avatar -->
+                <a href="#" class="avatar rounded-circle">
+                  <img alt="Image placeholder" src="../../assets/img/theme/light/team-1-800x800.jpg" class="">
+                </a>
+              </div>
+              <div class="col ml-md-n2">
+                <a href="#!" class="d-block h6 mb-0">Alex Krasnov</a>
+                <small class="d-block text-muted">SOE, Choicery Founder</small>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-xs btn-primary btn-icon rounded-pill">
+                  <span class="btn-inner--icon"><i class="far fa-edit"></i></span>
+                  <span class="btn-inner--text">Edit</span>
+                </button>
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row align-items-center card-contact-details">
+              <div class="col">
+                <h6 class="text-sm mb-0">
+                  <i class="fab fa-facebook mr-2"></i>Facebook
+                </h6>
+              </div>
+              <div class="col-auto">
+                <span class="text-sm">john.sullivan</span>
+              </div>
+              <div class="col-1 edit-contact">
+                <button class="action-item" data-toggle="tooltip" title="" data-original-title="Edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="row align-items-center card-contact-details">
+              <div class="col">
+                <h6 class="text-sm mb-0">
+                  <i class="fas fa-phone-square mr-2"></i>Phone
+                </h6>
+              </div>
+              <div class="col-auto">
+                <span class="text-sm">+40-788-45-67</span>
+              </div>
+              <div class="col-1 edit-contact">
+                <button class="action-item" data-toggle="tooltip" title="" data-original-title="Edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="row align-items-center card-contact-details">
+              <div class="col">
+                <h6 class="text-sm mb-0">
+                  <i class="fab fa-instagram mr-2"></i>Instagram
+                </h6>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-xs btn-primary btn-icon rounded-pill">
+                  <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
+                  <span class="btn-inner--text">Add</span>
+                </button>
+              </div>
+              <div class="col-1 edit-contact">
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="row align-items-center card-contact-details">
+              <div class="col">
+                <h6 class="text-sm mb-0">
+                  <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                </h6>
+              </div>
+              <div class="col-auto">
+                <span class="text-sm">johnsullivan</span>
+              </div>
+              <div class="col-1 edit-contact">
+                <button class="action-item" data-toggle="tooltip" title="" data-original-title="Edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 text-center">
+          <button type="button" class="btn btn-sm btn-secondary rounded-pill">Cancel</button>
+          <button type="button" class="btn btn-sm btn-primary rounded-pill">Save</button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

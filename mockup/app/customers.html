@@ -18,7 +18,7 @@
 </head>
 
 <body class="application application-offset">
-
+  
   <!-- Application container -->
   <div class="container-fluid container-application">
     <!-- Sidenav -->
@@ -49,7 +49,7 @@
           <div class="mt-4">
             <h5 class="mb-0 text-white">Alex Krasnov</h5>
             <span class="d-block text-sm text-white opacity-8 mb-3">Manager</span>
-
+            
             <a href="#" class="btn btn-sm btn-white btn-icon rounded-pill shadow hover-translate-y-n3">
               <span class="btn-inner--icon"><i class="fas fa-coins"></i></span>
               <span class="btn-inner--text">Trial</span>
@@ -77,6 +77,7 @@
           <span class="btn-inner--icon d-block pt-2">Home</span>
         </a>
         <a href="../app/requests.html" class="btn btn-square text-sm">
+          <span class="badge badge-pill badge-requests">3</span>
           <span class="btn-inner--icon d-block"><i class="fas fa-tasks fa-2x"></i></span>
           <span class="btn-inner--icon d-block pt-2">Requests</span>
         </a>
@@ -98,12 +99,12 @@
         </a>
       </div>
       <!-- Misc area -->
-
+      
     </div>
     <!-- Content -->
     <div class="main-content position-relative">
       <!-- Main nav -->
-
+      
       <!-- Page content -->
       <div class="page-content">
         <!-- Create project modal -->
@@ -133,7 +134,7 @@
                   </small>
                   <textarea class="form-control" data-toggle="autosize" rows="1"></textarea>
                 </div>
-
+                
                 <div class="form-group">
                   <label class="form-control-label">
                     Customer
@@ -148,27 +149,6 @@
                       <option value="Argus">Argus</option>
                   </select>
                 </div>
-
-
-                <div class="form-group">
-                  <div>
-                    <label class="form-control-label">
-                      Type
-                    </label>
-                  </div>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-primary">
-                        <input type="checkbox" name="options" id="checkboxButton2" autocomplete="off"> Text chat
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="checkbox" name="options" id="checkboxButton3" autocomplete="off"> Phone call
-                    </label>
-                    <label class="btn btn-primary active">
-                        <input type="checkbox" name="options" id="checkboxButton4" autocomplete="off" checked> Video call
-                    </label>
-                  </div>
-                </div>
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-dismiss="modal">Cancel</button>
@@ -183,7 +163,10 @@
             <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
               <!-- Page title + Go Back button -->
               <div class="d-inline-block">
-                <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">Customers</h5>
+                <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
+                  <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+                  Customers
+                </h5>
               </div>
               <!-- Additional info -->
               <div class="align-items-center ml-4 d-inline-flex">
@@ -264,12 +247,11 @@
               <thead>
                 <tr>
                   <th scope="col" class="sort" data-sort="order"></th>
-                  <th scope="col" class="sort"></th>
                   <th scope="col" class="sort" data-sort="cname">Company</th>
+                  <th scope="col" class="sort" data-sort="cname"></th>
                   <th scope="col" class="sort" data-sort="reference">Reference</th>
                   <th scope="col" class="sort">Contacts</th>
                   <th scope="col" class="sort" data-sort="country">Country</th>
-                  <th scope="col" class="sort" data-sort="city">City</th>
                   <th scope="col" class="sort" data-sort="calls">Calls</th>
                 </tr>
               </thead>
@@ -279,14 +261,14 @@
                   <td>
                     <div class="media align-items-center">
                         <div class="customers-logo">
-                          <a href="customer_details.html">
+                          <a href="customers/details.html">
                             <img alt="Logo" src="../assets/img/clients/svg/airbnb.svg" class="clogo">
                           </a>
                         </div>
                     </div>
                   </td>
                   <td class="cname">
-                    <a href="customer_details.html" class="name h6 mb-0 text-sm">Airbnb</a>
+                    <a href="customers/details.html" class="name h6 mb-0 text-sm">Airbnb</a>
                   </td>
                   <td class="reference">
                     <div class="media align-items-center">
@@ -307,8 +289,7 @@
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
                   </td>
-                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> USA</td>
-                  <td class="city">San-Francisco</td>
+                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> San-Francisco</td>
                   <td class="calls">
                     <span class="badge badge-secondary">18</span>
                   </td>
@@ -318,14 +299,14 @@
                   <td>
                     <div class="media align-items-center">
                         <div class="customers-logo">
-                          <a href="customer_details.html">
+                          <a href="customers/details.html">
                             <img alt="logo" src="../assets/img/clients/svg/amazon.svg" class="clogo">
                           </a>
                         </div>
                     </div>
                   </td>
                   <td class="cname">
-                    <a href="customer_details.html" class="name h6 mb-0 text-sm">Amazon</a>
+                    <a href="customers/details.html" class="name h6 mb-0 text-sm">Amazon</a>
                   </td>
                   <td class="reference">
                     <div class="media align-items-center">
@@ -345,8 +326,7 @@
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
                   </td>
-                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/de.svg" /> Germany</td>
-                  <td class="city">Berlin</td>
+                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/de.svg" /> Berlin</td>
                   <td class="calls">
                     <span class="badge badge-secondary">28</span>
                   </td>
@@ -356,14 +336,14 @@
                   <td>
                     <div class="media align-items-center">
                         <div class="customers-logo">
-                          <a href="customer_details.html">
+                          <a href="customers/details.html">
                             <img alt="Logo" src="../assets/img/clients/svg/google.svg" class="clogo">
                           </a>
                         </div>
                     </div>
                   </td>
                   <td class="cname">
-                    <a href="customer_details.html" class="name h6 mb-0 text-sm">Google</a>
+                    <a href="customers/details.html" class="name h6 mb-0 text-sm">Google</a>
                   </td>
                   <td class="reference">
                     <div class="media align-items-center">
@@ -383,8 +363,7 @@
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
                   </td>
-                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> USA</td>
-                  <td class="city">San-Francisco</td>
+                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> San-Francisco</td>
                   <td class="calls">
                     <span class="badge badge-secondary">60</span>
                   </td>
@@ -394,14 +373,14 @@
                   <td>
                     <div class="media align-items-center">
                         <div class="customers-logo">
-                          <a href="customer_details.html">
+                          <a href="customers/details.html">
                             <img alt="Image placeholder" src="../assets/img/clients/svg/paypal.svg" class="clogo">
                           </a>
                         </div>
                     </div>
                   </td>
                   <td class="cname">
-                    <a href="customer_details.html" class="name h6 mb-0 text-sm">Paypal</a>
+                    <a href="customers/details.html" class="name h6 mb-0 text-sm">Paypal</a>
                   </td>
                   <td class="reference">
                     <div class="media align-items-center">
@@ -421,8 +400,7 @@
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
                   </td>
-                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/nl.svg" /> Netherlands</td>
-                  <td class="city">Amsterdam</td>
+                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/nl.svg" /> Amsterdam</td>
                   <td class="calls">
                     <span class="badge badge-secondary">4</span>
                   </td>
@@ -432,14 +410,14 @@
                   <td>
                     <div class="media align-items-center">
                         <div class="customers-logo">
-                          <a href="customer_details.html">
+                          <a href="customers/details.html">
                             <img alt="Logo" src="../assets/img/clients/svg/spotify.svg" class="clogo">
                           </a>
                         </div>
                     </div>
                   </td>
                   <td class="cname">
-                    <a href="customer_details.html" class="name h6 mb-0 text-sm">Spotify</a>
+                    <a href="customers/details.html" class="name h6 mb-0 text-sm">Spotify</a>
                   </td>
                   <td class="reference">
                     <div class="media align-items-center">
@@ -458,8 +436,7 @@
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
                     <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
                   </td>
-                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/fr.svg" /> France</td>
-                  <td class="city">Paris</td>
+                  <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/fr.svg" /> Paris</td>
                   <td class="calls">
                     <span class="badge badge-secondary">4</span>
                   </td>
@@ -468,10 +445,10 @@
             </table>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
   </div>
-
+  
   <div class="container">
     <div class="footer pt-5 pb-4 footer-light" id="footer-main">
       <div class="row text-center text-sm-left align-items-sm-center">

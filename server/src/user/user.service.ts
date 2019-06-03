@@ -36,7 +36,6 @@ export class UserService {
     // check uniqueness of username/email
     const { email, password, fullName, position, username, companyId } = dto;
     const user = await this.findOne(new LoginUserDto(email, password, companyId));
-    console.log(user);
     if (user) {
       const errors = { username: 'Username and email must be unique.' };
       throw new HttpException({ message: 'Input data validation failed', errors }, HttpStatus.BAD_REQUEST);

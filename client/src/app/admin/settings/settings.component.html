@@ -1,0 +1,214 @@
+<div class="container-fluid container-application">
+  <!-- Content -->
+  <div class="main-content position-relative">
+    <!-- Main nav -->
+
+    <!-- Page content -->
+    <div class="page-content">
+      <!-- Page title -->
+      <div class="page-title mt-4 pt-2">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+            <!-- Page title + Go Back button -->
+            <div class="d-inline-block">
+              <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
+                <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+                Account settings
+              </h5>
+            </div>
+            <!-- Additional info -->
+          </div>
+          <div class="col-md-6 d-flex align-items-center justify-content-between justify-content-md-end">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 order-lg-1 mt-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class=" h6 mb-0">General</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Company name</label>
+                      <input class="form-control" value="Chpoicery" type="text">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+
+                    <!--
+                                          <div class="logo-upload">
+                                            <input type="file" name="file-1[]" id="file-1" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                                            <label for="file-1">
+                                                <i class="fa fa-upload"></i>
+                                                <span>Choose a file…</span>
+                                                <img src="../assets/img/brand/dark.png" alt="logo" />
+                                            </label>
+                                          </div>
+                    -->
+                    <div class="form-group">
+                      <label class="form-control-label mb-0">
+                        Company Logo
+                      </label>
+                      <small class="form-text text-muted mb-2 mt-0">
+                        Formats are: giff, jpg, png and file size up to 10 mb
+                      </small>
+                      <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-url="http://" data-dropzone-multiple>
+                        <div class="fallback">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="dropzone-1" multiple>
+                            <label class="custom-file-label" for="customFileUpload">Choose file</label>
+                          </div>
+                        </div>
+                        <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+                          <li class="list-group-item px-0">
+                            <div class="row align-items-center">
+                              <div class="col-auto">
+                                <div class="avatar">
+                                  <img class="rounded" src="" alt="Image placeholder" data-dz-thumbnail>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <h6 class="text-sm mb-1" data-dz-name>...</h6>
+                                <p class="small text-muted mb-0" data-dz-size></p>
+                              </div>
+                              <div class="col-auto">
+                                <a href="#" class="dropdown-item" data-dz-remove>
+                                  <i class="fas fa-trash-alt"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5 class=" h6 mb-0">Customer portal settings</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Host</label>
+                    <input class="form-control" disabled value="carpick.choicery.app" type="text">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Customer portal url</label>
+                    <input class="form-control" type="text" value="https://www.carpick.com/references/">
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-toggle="modal" data-target="#modal-change-username">Request to change host</button>
+              <!-- Modal -->
+              <div class="modal fade" id="modal-change-username" tabindex="-1" role="dialog" aria-labelledby="modal-change-username" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <form>
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
+                          <div>
+                            <div class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                              <i class="fas fa-link"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="mb-0">Change host</h6>
+                          </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p class="text-muted text-sm mb-0"><strong>Changing host is a big deal, so, we'll change it manually for you!</strong></p>
+                            <p class="text-muted text-sm">Please setup new name. You will recive email nortificatin when we're done with it!</p>
+                          </div>
+                          <div class="col-sm-8">
+                            <div class="form-group">
+                              <label class="form-control-label">New host name</label>
+                              <input class="form-control" type="text" value="carpick">
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <p class="mt-4 pt-4 font-weight-600">.choicerry.io</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-sm btn-primary rounded-pill" data-dismiss="modal">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5 class=" h6 mb-0">Delete my account</h5>
+              <p>After this action there will be no way to recover the data. So, you'd better don't do that!</p>
+            </div>
+            <div class="card-body">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-sm btn-danger rounded-pill" data-toggle="modal" data-target="#modal-delete-account">Delete account</button>
+              <!-- Modal -->
+              <div class="modal modal-danger fade" id="modal-delete-account" tabindex="-1" role="dialog" aria-labelledby="modal-delete-account" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <form class="form-danger">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="text-center">
+                          <i class="fas fa-exclamation-circle fa-3x opacity-8"></i>
+                          <h5 class="text-white mt-4">Should we stop now?</h5>
+                          <p class="text-sm text-sm">All your data will be erased. You will no longer be billed, and your username will be available to anyone.</p>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label text-white">You email or username</label>
+                          <input class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label text-white">To verify, type <span class="font-italic">delete my account</span> below</label>
+                          <input class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label text-white">Your password</label>
+                          <input class="form-control" type="password">
+                        </div>
+                        <div class="mt-4">
+                          <button type="button" class="btn btn-block btn-sm btn-white text-danger rounded-pill">Delete my account</button>
+                          <button type="button" class="btn btn-block btn-sm btn-link text-light mt-4" data-dismiss="modal">Not this time</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 text-center">
+            <button type="button" class="btn btn-sm btn-secondary rounded-pill">Cancel</button>
+            <button type="button" class="btn btn-sm btn-primary rounded-pill">Save</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

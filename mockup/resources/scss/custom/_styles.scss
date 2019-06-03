@@ -1,4 +1,157 @@
-// User styles
-//
-// This is the place where you should place all additional styles and imports.
-// This will allow you to take advantage of future updates with lower time consumed on the upgrade process.
+.application .sidenav-header .navbar-brand img{
+  height: 2.2rem;
+}
+.auth-logo img{
+  width: 145px;
+}
+
+/*------------------Requests------------------*/
+.customers-logo img.clogo{
+  width: 80px;
+}
+.table-flag{
+  width: 16px;
+  margin-right: 4px;
+  margin-top: -2px;
+}
+td.contacts a{
+  margin-right: 8px;
+}
+td.contacts a, td.contacts a i{
+  font-size: 20px;
+}
+td.contacts a i.color-phone{
+  color:#45A523;
+}
+td.contacts a i.color-li{
+  color:#0073b1;
+}
+td.contacts a i.color-fb{
+  color:#3B5999;
+}
+td.contacts a i.color-tw{
+  color:#1DA1F2;
+}
+.row-status-todo{
+  background-color: #fcf3ea !important;
+}
+.badge-ToDo{
+  color: #FFF;
+  background-color: #3E50B4;
+}
+
+.badge-requests{
+  width: 24px;
+  left: 62px;
+  top: -4px;
+  background: #ff562f;
+  color: #ffffff;
+}
+.active .badge-requests{
+  background: #FFF;
+  color: #3d50b4;
+}
+
+.status-circule{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  top: 1px;
+}
+span.status-circule.status-todo, 
+.status-todo .badge{
+  background: #3d4fb3;
+}
+span.status-circule.status-open, 
+.status-open .badge{
+  background: #ffab00;
+}
+span.status-circule.status-scheduled, 
+.status-scheduled .badge{
+  background: #1d8ede;
+}
+span.status-circule.status-done, 
+.status-done .badge{
+  background: #36b37e;
+}
+span.status-circule.status-canceled, 
+.status-canceled .badge{
+  background: #ff562f;
+}
+.status-todo .dropdown-menu a.status-link-todo, 
+.status-open .dropdown-menu a.status-link-open, 
+.status-scheduled .dropdown-menu a.status-link-scheduled, 
+.status-done .dropdown-menu a.status-link-done, 
+.status-canceled .dropdown-menu a.status-link-canceled{
+  font-weight: bold;
+  color:#000;
+}
+.status-todo .status-value::before{
+  content: "To do";
+}
+.status-open .status-value::before{
+  content: "Open";
+}
+.status-scheduled .status-value::before{
+  content: "Scheduled";
+}
+.status-done .status-value::before{
+  content: "Done";
+}
+.status-canceled .status-value::before{
+  content: "Canceled";
+}
+
+.action-separator{
+  color: #d0d0d0;
+}
+/*------------------Requests End------------------*/
+
+.logo-upload img{
+  max-height: 24px;
+}
+
+.card-contact-details .edit-contact{
+  visibility: hidden;
+}
+.card-contact-details:hover .edit-contact{
+  visibility: visible;
+}
+.list-group-item.active{
+  background-color: #f2f4fb;
+}
+#navigation-toggler{
+  color:#FFF;
+  font-weight: 100;
+  font-size: 16px;
+  top: -4px;
+  position: relative;
+}
+
+
+
+/*---------------Responsive---------------*/
+@media (min-width: 1px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #navigation-toggler{
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  #navigation-toggler{
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1199px){
+  #navigation-toggler{
+    display: none;
+  }
+}
