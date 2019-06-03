@@ -13,16 +13,18 @@ import { AuthMiddleware } from './auth.middleware';
   ],
   exports: [UserService]
 })
-export class UserModule implements NestModule {
-  public configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes(
-          {path: 'users', method: RequestMethod.GET},
-          {path: 'users', method: RequestMethod.PUT},
-          {path: 'users', method: RequestMethod.POST},
-          {path: 'users/:id', method: RequestMethod.DELETE},
-          {path: 'users/login', method: RequestMethod.POST}
-          );
-  }
+export class UserModule
+    // implements NestModule
+{
+  // public configure(consumer: MiddlewareConsumer) {
+  //   consumer
+  //     .apply(AuthMiddleware)
+  //     .forRoutes(
+  //         // {path: 'users', method: RequestMethod.GET},
+  //         {path: 'users', method: RequestMethod.PUT},
+  //         {path: 'users', method: RequestMethod.POST},
+  //         {path: 'users/:id', method: RequestMethod.DELETE},
+  //         {path: 'users/login', method: RequestMethod.POST}
+  //         );
+  // }
 }

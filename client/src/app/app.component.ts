@@ -3,6 +3,7 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
+import { UserService } from './core/services';
 
 export const ROOT_SELECTOR = 'app';
 
@@ -23,11 +24,13 @@ export class AppComponent implements OnInit {
   public name = 'Choicery';
 
   constructor(
-    public appState: AppState
+    public appState: AppState,
+    public userService: UserService
   ) {}
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
+    this.userService.populate();
   }
 
 }

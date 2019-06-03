@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, getRepository, DeleteResult } from 'typeorm';
+import { Repository, getRepository, DeleteResult, ObjectID, Column, BeforeInsert } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
 const jwt = require('jsonwebtoken');
 import { SECRET } from '../config';
-import { UserRO } from './user.interface';
-import { validate } from 'class-validator';
+import { IsEmail, validate } from 'class-validator';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';
 import * as crypto from 'crypto';
+import { UserRO } from './dto/user.ro';
 
 @Injectable()
 export class UserService {
@@ -34,26 +34,23 @@ export class UserService {
   async create(dto: CreateUserDto): Promise<UserRO> {
 
     // check uniqueness of username/email
-    const { username, email, password } = dto;
+    const { email, password } = dto;
     const qb = await getRepository(UserEntity)
       .createQueryBuilder('user')
-      .where('user.username = :username', { username })
-      .orWhere('user.email = :email', { email });
+      .where('user.email = :email', { email });
 
     const user = await qb.getOne();
 
     if (user) {
       const errors = { username: 'Username and email must be unique.' };
       throw new HttpException({ message: 'Input data validation failed', errors }, HttpStatus.BAD_REQUEST);
-
     }
 
     // create new user
     let newUser = new UserEntity();
-    newUser.username = username;
     newUser.email = email;
     newUser.password = password;
-    newUser.articles = [];
+    newUser.companyId = '';
 
     const errors = await validate(newUser);
     if (errors.length > 0) {
@@ -69,9 +66,6 @@ export class UserService {
 
   async update(id: number, dto: UpdateUserDto): Promise<UserEntity> {
     let toUpdate = await this.userRepository.findOne(id);
-    delete toUpdate.password;
-    delete toUpdate.favorites;
-
     let updated = Object.assign(toUpdate, dto);
     return await this.userRepository.save(updated);
   }
@@ -86,7 +80,7 @@ export class UserService {
     if (!user) {
       const errors = { User: ' not found' };
       throw new HttpException({ errors }, 401);
-    };
+    }
 
     return this.buildUserRO(user);
   }
@@ -110,14 +104,10 @@ export class UserService {
   };
 
   private buildUserRO(user: UserEntity) {
-    const userRO = {
+    return {
       username: user.username,
       email: user.email,
-      bio: user.bio,
       token: this.generateJWT(user),
-      image: user.image
     };
-
-    return { user: userRO };
   }
 }

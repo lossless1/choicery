@@ -3,14 +3,13 @@ import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from './dto';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
-
 import {
   ApiUseTags,
   ApiBearerAuth
 } from '@nestjs/swagger';
-import { UserInterface } from './user.interface';
+import { User } from './user.decorator';
+import { UserRO } from './dto/user.ro';
 
 @ApiBearerAuth()
 @ApiUseTags('users')
@@ -20,7 +19,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('users')
-  async findMe(@User('email') email: string): Promise<UserInterface> {
+  async findMe(@User('email') email: string): Promise<UserRO> {
+    console.log('users');
     return await this.userService.findByEmail(email);
   }
 
@@ -42,15 +42,14 @@ export class UserController {
 
   @UsePipes(new ValidationPipe())
   @Post('users/login')
-  async login(@Body('user') loginUserDto: LoginUserDto): Promise<any> {
+  async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
     const _user: UserEntity = await this.userService.findOne(loginUserDto);
 
     const errors = {User: ' not found'};
     if (!_user) throw new HttpException({errors}, 401);
 
     const token = await this.userService.generateJWT(_user);
-    const {email, fullName, image} = _user;
-    const user = {email, token, fullName, image};
-    return {user}
+    const {email, username} = _user;
+    return {email, token, username}
   }
 }

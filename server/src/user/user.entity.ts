@@ -1,4 +1,4 @@
-import { Entity, Column, BeforeInsert, ObjectIdColumn } from "typeorm";
+import { Entity, Column, BeforeInsert, ObjectIdColumn, ObjectID } from "typeorm";
 import { IsEmail} from 'class-validator';
 import * as crypto from 'crypto';
 
@@ -12,14 +12,26 @@ export class UserEntity {
   fullName: string;
 
   @Column()
+  username: string;
+
+  @Column()
   @IsEmail()
   email: string;
 
-  @Column({default: ''})
+  @Column()
   image: string;
 
   @Column()
   password: string;
+
+  @Column()
+  companyId: string;
+
+  @Column()
+  position: string;
+
+  @Column()
+  description: string;
 
   @BeforeInsert()
   hashPassword() {

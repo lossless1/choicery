@@ -9,22 +9,22 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    // canActivate: [NoAuthGuard]
+    canActivate: [NoAuthGuard]
   },
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [NoAuthGuard]
+    canActivate: [NoAuthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    // canActivate: [NoAuthGuard]
+    canActivate: [NoAuthGuard]
   },
   {
     path: 'recover',
     component: RecoverComponent,
-    // canActivate: [NoAuthGuard]
+    canActivate: [NoAuthGuard]
   }
 ];
 

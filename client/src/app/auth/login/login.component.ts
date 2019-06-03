@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../app.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Errors } from '../../core/models';
+import { UserService } from '../../core/services';
 
 @Component({
   /**
@@ -15,13 +18,52 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
+  public typePasswordInput: string = 'password';
+  public title: string = '';
+  public errors: Errors = {errors: {}};
+  public isSubmitting = false;
+  public authForm: FormGroup = new FormGroup({
+    email: new FormControl('', [
+      Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.email
+    ]),
+    password: new FormControl('', [
+      Validators.required, Validators.minLength(2), Validators.maxLength(20),
+    ]),
+  });
 
   constructor(
-    public appState: AppState,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
   ) {
   }
 
   public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    // console.log('Initial App State', this.appState.state);
+  }
+
+  public togglePasswordView() {
+    if (this.typePasswordInput === 'password') {
+      this.typePasswordInput = 'text';
+    } else {
+      this.typePasswordInput = 'password';
+    }
+  }
+
+  public submitForm() {
+    this.isSubmitting = true;
+    this.errors = {errors: {}};
+
+    const credentials = this.authForm.value;
+    this.userService
+      .attemptAuth(credentials)
+      .subscribe(
+        data => this.router.navigateByUrl('/admin/requests'),
+        err => {
+          console.log(err);
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
   }
 }

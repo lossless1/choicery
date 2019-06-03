@@ -440,14 +440,16 @@
                     <p class="text-muted mb-0 text-center">Sign in to your account to continue.</p>
                   </div>
                   <span class="clearfix"></span>
-                  <form role="form">
+                  <app-list-errors [errors]="errors"></app-list-errors>
+                  <form role="form" [formGroup]="authForm" (ngSubmit)="submitForm()">
                     <div class="form-group">
                       <label class="form-control-label">Email address</label>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
+                        <input formControlName="email" type="email" class="form-control" id="input-email"
+                               placeholder="name@example.com" >
                       </div>
                     </div>
                     <div class="form-group mb-4">
@@ -456,27 +458,30 @@
                           <label class="form-control-label">Password</label>
                         </div>
                         <div class="mb-2">
-                          <a routerLink="/recover" class="small text-muted text-underline--dashed border-primary">Lost
-                            password?</a>
+                          <a routerLink='/recover' class="small text-muted text-underline--dashed border-primary">
+                            Lost password?</a>
                         </div>
                       </div>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="input-password" placeholder="Password">
+                        <input formControlName="password" [type]="typePasswordInput" class="form-control"
+                               id="input-password" placeholder="Password">
                         <div class="input-group-append">
                             <span class="input-group-text">
-                              <a href="#" data-toggle="password-text" data-target="#input-password">
+                              <a (click)="togglePasswordView()" data-toggle="password-text"
+                                 data-target="#input-password">
                                 <i class="fas fa-eye"></i>
                               </a>
                             </span>
                         </div>
                       </div>
                     </div>
-                    <a routerLink="/admin/home">
+                    <a>
                       <div class="mt-4">
-                        <button type="button" class="btn btn-sm btn-primary btn-icon rounded-pill">
+                        <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill"
+                                [disabled]="!authForm.valid || isSubmitting">
                           <span class="btn-inner--text">Sign in</span>
                           <span class="btn-inner--icon"><i class="fas fa-long-arrow-alt-right"></i></span>
                         </button>
@@ -486,7 +491,7 @@
                 </div>
                 <div class="card-footer px-md-5">
                   <small>Not registered?</small>
-                  <a routerLink="/register" class="small font-weight-bold">Create account</a>
+                  <a routerLink='/register' class="small font-weight-bold">Create account</a>
                 </div>
               </div>
             </div>
