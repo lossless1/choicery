@@ -19,17 +19,15 @@ import { AuthMiddleware } from './auth.middleware';
         UserService
     ]
 })
-export class UserModule implements NestModule {
+export class UserModule  {
     // TODO CHeck
-    public configure(consumer: MiddlewareConsumer) {
-        consumer
-            .apply(AuthMiddleware)
-            .forRoutes(
-                {path: 'users', method: RequestMethod.GET},
-                {path: 'users', method: RequestMethod.PUT},
-                {path: 'users', method: RequestMethod.POST},
-                {path: 'users/:id', method: RequestMethod.DELETE},
-                {path: 'users/login', method: RequestMethod.POST}
-            );
-    }
+    // public configure(consumer: MiddlewareConsumer) {
+    //     consumer
+    //         .apply(AuthMiddleware)
+    //         .forRoutes(
+    //             {path: 'users', method: RequestMethod.GET},
+    //             {path: 'users', method: RequestMethod.PUT},
+    //             {path: 'users', method: RequestMethod.POST},
+    //         );
+    // }
 }

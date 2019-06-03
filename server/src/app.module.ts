@@ -12,8 +12,8 @@ import { CustomerModule } from './customer/customer.module';
         TypeOrmModule.forRoot(),
         ConfigModule,
         UserModule,
-        RequestModule,
-        CustomerModule,
+        // RequestModule,
+        // CustomerModule,
     ],
     controllers: [
         AppController
