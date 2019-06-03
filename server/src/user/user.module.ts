@@ -6,12 +6,18 @@ import { UserService } from './user.service';
 import { AuthMiddleware } from './auth.middleware';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])],
-  providers: [UserService],
-  controllers: [
-    UserController
+  imports: [
+      TypeOrmModule.forFeature([UserEntity])
   ],
-  exports: [UserService]
+  providers: [
+      UserService
+  ],
+  controllers: [
+      UserController
+  ],
+  exports: [
+      UserService
+  ]
 })
 export class UserModule
     // implements NestModule

@@ -34,13 +34,9 @@ export class UserService {
   async create(dto: CreateUserDto): Promise<UserRO> {
 
     // check uniqueness of username/email
-    const { email, password } = dto;
-    const qb = await getRepository(UserEntity)
-      .createQueryBuilder('user')
-      .where('user.email = :email', { email });
-
-    const user = await qb.getOne();
-
+    const { email, password, fullName, position, username, companyId } = dto;
+    const user = await this.findOne(new LoginUserDto(email, password));
+    console.log(user);
     if (user) {
       const errors = { username: 'Username and email must be unique.' };
       throw new HttpException({ message: 'Input data validation failed', errors }, HttpStatus.BAD_REQUEST);
@@ -50,7 +46,10 @@ export class UserService {
     let newUser = new UserEntity();
     newUser.email = email;
     newUser.password = password;
-    newUser.companyId = '';
+    newUser.position = position;
+    newUser.username = username;
+    newUser.fullName = fullName;
+    newUser.companyId = companyId;
 
     const errors = await validate(newUser);
     if (errors.length > 0) {
