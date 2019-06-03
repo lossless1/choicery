@@ -6,7 +6,6 @@ async function bootstrap() {
   const appOptions = {cors: true};
   const app = await NestFactory.create(ApplicationModule, appOptions);
   app.setGlobalPrefix('api');
-
   const options = new DocumentBuilder()
     .setTitle('Choicery App')
     .setDescription('Choicery description')
@@ -17,6 +16,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/docs', app, document);
 
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();
