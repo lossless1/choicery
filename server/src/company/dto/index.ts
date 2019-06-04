@@ -1,1 +1,1 @@
-export {CreateCompanyDto} from './create.company.dto.ts';
+export {CreateCompanyDto} from './create.company.dto';

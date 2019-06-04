@@ -1,4 +1,5 @@
-import { ReferencePerson } from './model/reference.person';
+import { CustomerReferencePerson } from './model/customer.reference.person';
+import { CompanyInterface } from '../company/company.interface';
 
 export interface CustomerInterface {
     id: string;
@@ -9,7 +10,7 @@ export interface CustomerInterface {
     country: string;
     description: string;
     company: CompanyInterface;
-    referencePerson: ReferencePerson;
+    referencePerson: CustomerReferencePerson;
     contactDetails: string;
     order: number;
     createdAt?: Date;

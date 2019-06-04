@@ -1,6 +1,8 @@
-import { Entity, Column, ObjectIdColumn } from 'typeorm';
-import { ReferencePerson } from './model/reference.person';
+import { Entity, Column, ObjectIdColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 import { CompanyEntity } from '../company/company.entity';
+import { CustomerReferencePerson } from './model/customer.reference.person';
+import { CustomerContactDetailsPerson } from './model/customer.contact.details.person';
+import { Type } from 'class-transformer';
 
 @Entity()
 export class CustomerEntity {
@@ -9,13 +11,7 @@ export class CustomerEntity {
     id: string;
 
     @Column()
-    fullName: string;
-
-    @Column()
-    email: string;
-
-    @Column()
-    position: string;
+    name: string;
 
     @Column()
     city: string;
@@ -29,18 +25,31 @@ export class CustomerEntity {
     @Column(type => CompanyEntity)
     company: CompanyEntity;
 
-    @Column(type => ReferencePerson)
-    referencePerson: ReferencePerson;
+    @Column(type => CustomerReferencePerson)
+    referencePerson: CustomerReferencePerson;
 
-    @Column()
-    contactDetails: string;
+    @Column(type => CustomerContactDetailsPerson)
+    contactDetails: CustomerContactDetailsPerson;
 
     @Column()
     order: number;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: string;
+    @Column()
+    calls: number;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    updatedAt: string;
+    @Type(() => Date)
+    createdAt: number;
+
+    @Type(() => Date)
+    updatedAt: number;
+
+    @BeforeInsert()
+    updateDateCreation() {
+        this.createdAt = Date.now();
+    }
+
+    @BeforeUpdate()
+    updateDateUpdate() {
+        this.updatedAt = Date.now();
+    }
 }

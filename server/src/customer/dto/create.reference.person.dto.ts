@@ -1,20 +1,20 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateCompanyDto {
+export class CreateReferencePersonDto{
 
     @IsNotEmpty()
     @IsString()
-    name: string;
+    fullname: string;
 
     @IsNotEmpty()
     @IsString()
-    host: string;
+    email: string;
 
     @IsNotEmpty()
     @IsString()
-    portalUrl: string;
+    phone: string;
 
     @IsNotEmpty()
     @IsString()
-    description: string;
+    position: string;
 }

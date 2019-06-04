@@ -1,21 +1,40 @@
-import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Type } from 'class-transformer';
 
 @Entity()
 export class CompanyEntity {
+
     @ObjectIdColumn()
     id: string;
+
     @Column()
     name: string;
+
     @Column()
     host: string;
+
     @Column()
     image: string;
+
     @Column()
     portalUrl: string;
+
     @Column()
-    info: string;
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: string;
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    updatedAt: string;
+    description: string;
+
+    @Type(() => Date)
+    createdAt: number;
+
+    @Type(() => Date)
+    updatedAt: number;
+
+    @BeforeInsert()
+    updateDateCreation() {
+        this.createdAt = Date.now();
+    }
+
+    @BeforeUpdate()
+    updateDateUpdate() {
+        this.updatedAt = Date.now();
+    }
 }

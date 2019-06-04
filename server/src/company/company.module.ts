@@ -4,12 +4,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompanyService } from './company.service';
 import { AuthMiddleware } from '../user/auth.middleware';
 import { CompanyEntity } from './company.entity';
+import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CompanyEntity])],
+  imports: [TypeOrmModule.forFeature([CompanyEntity]), UserModule],
   providers: [CompanyService],
   controllers: [
     CompanyController
+  ],
+  exports: [
+    CompanyService
   ]
 })
 export class CompanyModule implements NestModule {

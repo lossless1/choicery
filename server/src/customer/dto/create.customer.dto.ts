@@ -1,33 +1,35 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { CreateReferencePersonDto } from './create.reference.person.dto';
+import { Type } from 'class-transformer';
+import { CreateContactDetailsDto } from './create.contact.details.dto';
 
 export class CreateCustomerDto{
-    @IsNotEmpty()
-    fullName: string;
 
     @IsNotEmpty()
-    email: string;
+    @IsString()
+    name: string;
 
     @IsNotEmpty()
-    position: string;
-
-    @IsNotEmpty()
+    @IsString()
     city: string;
 
     @IsNotEmpty()
+    @IsString()
     country: string;
 
     @IsNotEmpty()
+    @IsString()
     description: string;
 
-    //TODO
-    // @IsNotEmpty()
-    // companyId: string;
-
-    //TODO
-    // @IsNotEmpty()
-    // referencePerson: ReferencePerson;
-
     @IsNotEmpty()
-    contactDetails: string;
+    @IsMongoId()
+    companyId: string;
 
+    @ValidateNested()
+    @Type(() => CreateReferencePersonDto)
+    referencePerson: CreateReferencePersonDto;
+
+    @ValidateNested()
+    @Type(() => CreateContactDetailsDto)
+    contactDetails: CreateContactDetailsDto;
 }

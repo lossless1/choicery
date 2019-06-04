@@ -1,5 +1,7 @@
-import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 import { CustomerEntity } from '../customer/customer.entity';
+import { CompanyEntity } from '../company/company.entity';
+import { Type } from 'class-transformer';
 
 @Entity('requests')
 export class RequestEntity {
@@ -15,6 +17,9 @@ export class RequestEntity {
     @Column()
     companyDetails: string;
 
+    @Column(type => CompanyEntity)
+    referenceCompany: CompanyEntity;
+
     @Column()
     email: string;
 
@@ -27,10 +32,19 @@ export class RequestEntity {
     @Column()
     requestState: string;
 
+    @Type(() => Date)
+    createdAt: number;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: string;
+    @Type(() => Date)
+    updatedAt: number;
 
-    @Column({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    updatedAt?: string;
+    @BeforeInsert()
+    updateDateCreation() {
+        this.createdAt = Date.now();
+    }
+
+    @BeforeUpdate()
+    updateDateUpdate() {
+        this.updatedAt = Date.now();
+    }
 }

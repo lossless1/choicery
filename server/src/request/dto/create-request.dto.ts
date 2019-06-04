@@ -25,9 +25,9 @@ export class CreateRequestDto {
     @IsString()
     website: string;
 
-    // @IsNotEmpty()
-    // customerId: string;
+    @IsNotEmpty()
+    customerId: string;
 
-    // @IsNotEmpty()
-    // companyId: string;
+    @IsNotEmpty()
+    companyId: string;
 }

@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeleteResult } from 'typeorm';
 import { UserEntity } from '../user/user.entity';
 import { CustomerEntity } from './customer.entity';
 import { CreateCustomerDto } from './dto/create.customer.dto';
+import { CompanyService } from '../company/company.service';
+import { CompanyEntity } from '../company/company.entity';
 
 
 @Injectable()
@@ -13,41 +15,13 @@ export class CustomerService {
         private readonly customerRepository: Repository<CustomerEntity>,
         @InjectRepository(UserEntity)
         private readonly userRepository: Repository<UserEntity>,
+        private readonly companyService: CompanyService,
     ) {
     }
 
     async findAll(): Promise<any> {
 
-        const customers = await this.customerRepository.find()
-        //
-        // if ('tag' in query) {
-        //   qb.andWhere("customer.tagList LIKE :tag", { tag: `%${query.tag}%` });
-        // }
-        //
-        // if ('author' in query) {
-        //   const author = await this.userRepository.findOne({username: query.author});
-        //   qb.andWhere("customer.authorId = :id", { id: author.id });
-        // }
-        //
-        // if ('favorited' in query) {
-        //   const author = await this.userRepository.findOne({username: query.favorited});
-        //   const ids = author.favorites.map(el => el.id);
-        //   qb.andWhere("customer.authorId IN (:ids)", { ids });
-        // }
-        //
-        // qb.orderBy('customer.created', 'DESC');
-        //
-        // const customerCount = await qb.getCount();
-        //
-        // if ('limit' in query) {
-        //   qb.limit(query.limit);
-        // }
-        //
-        // if ('offset' in query) {
-        //   qb.offset(query.offset);
-        // }
-        //
-        // const companies = await qb.getMany();
+        const customers = await this.customerRepository.find();
 
         return {customers, customersCount: customers.length};
     }
@@ -58,20 +32,30 @@ export class CustomerService {
 
     async create(userId: number, customerData: CreateCustomerDto): Promise<CustomerEntity> {
 
+        console.log(customerData);
+        const _company: CompanyEntity = await this.companyService.findOne(customerData.companyId);
+
+        const errors = {company: ' with this id not found'};
+        if (!_company) throw new HttpException({errors}, 401);
+
         let customer = new CustomerEntity();
         customer.description = customerData.description;
-        customer.fullName = customerData.fullName;
-        customer.email = customerData.email;
-        customer.position = customerData.position;
         customer.city = customerData.city;
         customer.country = customerData.country;
         customer.description = customerData.description;
 
-        // TODO Get main company
-        // customer.company = customerData.company;
+        customer.company = _company;
+
         //TODO Get reference person
-        // customer.referencePerson = ReferencePerson;
-        customer.contactDetails = customerData.email;
+        customer.referencePerson = {
+            fullname: customerData.referencePerson.fullname,
+            email: customerData.referencePerson.email,
+            phone: customerData.referencePerson.phone,
+            position: customerData.referencePerson.position,
+            image: '',
+        };
+
+        customer.contactDetails = customerData.contactDetails;
         customer.order = 0;
 
         return await this.customerRepository.save(customer);

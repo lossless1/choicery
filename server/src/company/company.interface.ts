@@ -1,4 +1,4 @@
-interface CompanyInterface {
+export interface CompanyInterface {
     id: string;
     name: string;
     host: string;

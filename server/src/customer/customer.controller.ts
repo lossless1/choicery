@@ -1,4 +1,4 @@
-import { Get, Post, Body, Put, Delete, Query, Param, Controller } from '@nestjs/common';
+import { Get, Post, Body, Put, Delete, Query, Param, Controller, UsePipes } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { User } from '../user/user.decorator';
 
@@ -10,10 +10,11 @@ import {
 } from '@nestjs/swagger';
 import { CreateCustomerDto } from './dto/create.customer.dto';
 import { CustomerInterface } from './customer.interface';
+import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 @ApiBearerAuth()
-@ApiUseTags('customer')
-@Controller('customer')
+@ApiUseTags('customers')
+@Controller('customers')
 export class CustomerController {
 
     constructor(private readonly customerService: CustomerService) {

@@ -30,7 +30,7 @@ export class RequestController {
   @ApiResponse({ status: 200, description: 'Return one request.'})
   @Get(':id')
   async findOne(@Param('id') id): Promise<any> {
-    return await this.requestService.findOne({id});
+    return await this.requestService.findOne(id);
   }
 
   @ApiOperation({ title: 'Create request' })

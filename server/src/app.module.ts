@@ -6,14 +6,16 @@ import { Connection } from 'typeorm';
 import { ConfigModule } from './config/config.module';
 import { RequestModule } from './request/request.module';
 import { CustomerModule } from './customer/customer.module';
+import { CompanyModule } from './company/company.module';
 
 @Module({
     imports: [
         TypeOrmModule.forRoot(),
         ConfigModule,
         UserModule,
+        CompanyModule,
+        CustomerModule,
         // RequestModule,
-        // CustomerModule,
     ],
     controllers: [
         AppController
