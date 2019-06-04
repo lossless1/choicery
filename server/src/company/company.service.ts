@@ -20,7 +20,7 @@ export class CompanyService {
     return await this.companyRepository.findOne(id);
   }
 
-  async create(userId: number, companyData: CreateCompanyDto): Promise<CompanyEntity> {
+  async create(companyData: CreateCompanyDto): Promise<CompanyEntity> {
 
     let company = new CompanyEntity();
     company.name = companyData.name;

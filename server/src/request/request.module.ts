@@ -4,9 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RequestService } from './request.service';
 import { AuthMiddleware } from '../user/auth.middleware';
 import { RequestEntity } from './request.entity';
+import { UserModule } from '../user/user.module';
+import { CustomerModule } from '../customer/customer.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([RequestEntity])],
+  imports: [TypeOrmModule.forFeature([RequestEntity]), UserModule, CustomerModule],
   providers: [RequestService],
   controllers: [
     RequestController

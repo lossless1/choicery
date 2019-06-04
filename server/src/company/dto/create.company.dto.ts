@@ -17,4 +17,11 @@ export class CreateCompanyDto {
     @IsNotEmpty()
     @IsString()
     description: string;
+
+    constructor(name: string, host: string, portalUrl: string, description: string){
+        this.name = name;
+        this.host = host;
+        this.portalUrl = portalUrl;
+        this.description = description;
+    }
 }

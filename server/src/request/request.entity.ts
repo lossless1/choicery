@@ -11,23 +11,17 @@ export class RequestEntity {
     @Column()
     fullName: string;
 
-    @Column()
-    companyName: string;
-
-    @Column()
-    companyDetails: string;
-
     @Column(type => CompanyEntity)
-    referenceCompany: CompanyEntity;
-
-    @Column()
-    email: string;
+    prospectCompany: CompanyEntity;
 
     @Column()
     status: string;
 
     @Column(type => CustomerEntity)
     customer: CustomerEntity;
+
+    @Column(type => CompanyEntity)
+    company: CompanyEntity;
 
     @Column()
     requestState: string;

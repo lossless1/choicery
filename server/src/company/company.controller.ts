@@ -38,7 +38,7 @@ export class CompanyController {
     @ApiResponse({status: 403, description: 'Forbidden.'})
     @Post()
     async create(@User('id') userId: number, @Body('company') companyDto: CreateCompanyDto) {
-        return this.companyService.create(userId, companyDto);
+        return this.companyService.create(companyDto);
     }
 
     @ApiOperation({title: 'Update company'})

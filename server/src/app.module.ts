@@ -15,7 +15,7 @@ import { CompanyModule } from './company/company.module';
         UserModule,
         CompanyModule,
         CustomerModule,
-        // RequestModule,
+        RequestModule,
     ],
     controllers: [
         AppController

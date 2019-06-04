@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeleteResult } from 'typeorm';
 import { RequestEntity } from './request.entity';
@@ -6,6 +6,9 @@ import { UserEntity } from '../user/user.entity';
 import { CustomerService } from '../customer/customer.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UserRO } from '../user/dto/user.ro';
+import { CompanyService } from '../company/company.service';
+import { CreateCompanyDto } from '../company/dto';
+import { CustomerEntity } from '../customer/customer.entity';
 
 @Injectable()
 export class RequestService {
@@ -15,61 +18,38 @@ export class RequestService {
         @InjectRepository(UserEntity)
         private readonly userRepository: Repository<UserEntity>,
         private readonly customerService: CustomerService,
+        private readonly companyService: CompanyService,
     ) {
     }
 
     async findAll(): Promise<any> {
 
         const requests = await this.requestRepository.find();
-            // .createQueryBuilder('company')
-
-        // qb.where("1 = 1");
-        //
-        // if ('tag' in query) {
-        //     qb.andWhere("company.tagList LIKE :tag", {tag: `%${query.tag}%`});
-        // }
-        //
-        // if ('author' in query) {
-        //     const author = await this.userRepository.findOne({username: query.author});
-        //     qb.andWhere("company.authorId = :id", {id: author.id});
-        // }
-        //
-        // if ('favorited' in query) {
-        //     const author = await this.userRepository.findOne({username: query.favorited});
-        //     const ids = author.favorites.map(el => el.id);
-        //     qb.andWhere("company.authorId IN (:ids)", {ids});
-        // }
-        //
-        // qb.orderBy('company.created', 'DESC');
-        //
-        // const companyCount = await qb.getCount();
-        //
-        // if ('limit' in query) {
-        //     qb.limit(query.limit);
-        // }
-        //
-        // if ('offset' in query) {
-        //     qb.offset(query.offset);
-        // }
-
-        // const requests = await qb.getMany();
-
         return {requests, requestsCount: requests.length};
     }
 
-    async findOne(where): Promise<any> {
-        return await this.requestRepository.findOne(where);
+    async findOne(id): Promise<any> {
+        return await this.requestRepository.findOne(id);
     }
 
     async create(user: UserRO, requestData: CreateRequestDto): Promise<RequestEntity> {
 
+        const {name, host, description, portalUrl} = requestData.prospectCompany;
         let request = new RequestEntity();
         request.fullName = requestData.fullName;
-        request.companyName = requestData.companyName;
-        request.companyDetails = requestData.companyDetails;
-        request.email = requestData.email;
+        request.prospectCompany = await this.companyService.create(
+            new CreateCompanyDto(name, host, portalUrl, description));
         request.status = '';
-        // request.customer = await this.customerService.findOne(requestData.customerId);
+
+        const _customer: CustomerEntity = await this.customerService.findOne(requestData.customerId);
+        if(!_customer) throw new HttpException({customer: "with this id is not exist"}, 401);
+
+        request.customer = _customer;
+
+        const _company = await this.companyService.findOne(requestData.companyId);
+        if(!_company) throw new HttpException({company: "with this id is not exist"}, 401);
+
+        request.company = _company;
         request.requestState = '';
 
         return await this.requestRepository.save(request);
