@@ -29,4 +29,5 @@ export class CreateCustomerDto{
 
     @IsNotEmpty()
     contactDetails: string;
+
 }

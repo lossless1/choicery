@@ -11,16 +11,23 @@ export class CreateRequestDto {
 
     @IsNotEmpty()
     @IsString()
-    companyName: string;
+    prospectCompany: string;
 
     @IsNotEmpty()
     @IsString()
-    companyDetails: string;
+    contacts: string;
 
     @IsNotEmpty()
-    @IsEmail()
-    email: string;
+    @IsString()
+    description: string;
+
+    @IsNotEmpty()
+    @IsString()
+    website: string;
 
     // @IsNotEmpty()
     // customerId: string;
+
+    // @IsNotEmpty()
+    // companyId: string;
 }
