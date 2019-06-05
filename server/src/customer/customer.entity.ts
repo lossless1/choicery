@@ -34,9 +34,6 @@ export class CustomerEntity {
     @Column()
     order: number;
 
-    @Column()
-    calls: number;
-
     @Type(() => Date)
     createdAt: number;
 

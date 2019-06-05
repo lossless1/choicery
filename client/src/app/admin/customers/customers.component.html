@@ -152,8 +152,8 @@
           </tr>
           </thead>
           <tbody class="list">
-          <tr>
-            <th class="order" scope="row">1</th>
+          <tr *ngFor="let customer of customers; let i = index">
+            <th class="order" scope="row">{{i}}</th>
             <td>
               <div class="media align-items-center">
                 <div class="customers-logo">
@@ -164,7 +164,7 @@
               </div>
             </td>
             <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">Airbnb</a>
+              <a href="customers/details.html" class="name h6 mb-0 text-sm">{{customer.name}}</a>
             </td>
             <td class="reference">
               <div class="media align-items-center">
@@ -174,167 +174,20 @@
                   </div>
                 </div>
                 <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">Ariana Barros</a>
-                  <small class="d-block font-weight-bold">Product Manager</small>
+                  <a href="#" class="name h6 mb-0 text-sm">{{customer.referencePerson.fullname}}</a>
+                  <small class="d-block font-weight-bold">{{customer.referencePerson.position}}</small>
                 </div>
               </div>
             </td>
             <td class="contacts">
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
+              <a *ngIf="customer.contactDetails && customer.contactDetails.phone" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
+              <a *ngIf="customer.contactDetails && customer.contactDetails.facebook" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
+              <a *ngIf="customer.contactDetails && customer.contactDetails.linkedin" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
+              <a *ngIf="customer.contactDetails && customer.contactDetails.twitter" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
             </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> San-Francisco</td>
+            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> {{customer.city}}</td>
             <td class="calls">
-              <span class="badge badge-secondary">18</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="order" scope="row">2</th>
-            <td>
-              <div class="media align-items-center">
-                <div class="customers-logo">
-                  <a href="customers/details.html">
-                    <img alt="logo" src="../assets/img/clients/svg/amazon.svg" class="clogo">
-                  </a>
-                </div>
-              </div>
-            </td>
-            <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">Amazon</a>
-            </td>
-            <td class="reference">
-              <div class="media align-items-center">
-                <div>
-                  <div class="avatar-parent-child">
-                    <img alt="Image placeholder" src="../assets/img/theme/light/team-1-800x800.jpg" class="avatar  rounded-circle">
-                  </div>
-                </div>
-                <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">Alex Krasnov</a>
-                  <small class="d-block font-weight-bold">Co-founder</small>
-                </div>
-              </div>
-            </td>
-            <td class="contacts">
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
-            </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/de.svg" /> Berlin</td>
-            <td class="calls">
-              <span class="badge badge-secondary">28</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="order" scope="row">3</th>
-            <td>
-              <div class="media align-items-center">
-                <div class="customers-logo">
-                  <a href="customers/details.html">
-                    <img alt="Logo" src="../assets/img/clients/svg/google.svg" class="clogo">
-                  </a>
-                </div>
-              </div>
-            </td>
-            <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">Google</a>
-            </td>
-            <td class="reference">
-              <div class="media align-items-center">
-                <div>
-                  <div class="avatar-parent-child">
-                    <img alt="Image placeholder" src="../assets/img/theme/light/team-3-800x800.jpg" class="avatar  rounded-circle">
-                  </div>
-                </div>
-                <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">Karlien Nijhuis</a>
-                  <small class="d-block font-weight-bold">VP of Engineering</small>
-                </div>
-              </div>
-            </td>
-            <td class="contacts">
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-            </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> San-Francisco</td>
-            <td class="calls">
-              <span class="badge badge-secondary">60</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="order" scope="row">4</th>
-            <td>
-              <div class="media align-items-center">
-                <div class="customers-logo">
-                  <a href="customers/details.html">
-                    <img alt="Image placeholder" src="../assets/img/clients/svg/paypal.svg" class="clogo">
-                  </a>
-                </div>
-              </div>
-            </td>
-            <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">Paypal</a>
-            </td>
-            <td class="reference">
-              <div class="media align-items-center">
-                <div>
-                  <div class="avatar-parent-child">
-                    <img alt="Image placeholder" src="../assets/img/theme/light/team-4-800x800.jpg" class="avatar  rounded-circle">
-                  </div>
-                </div>
-                <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">Thanawan Chadee</a>
-                  <small class="d-block font-weight-bold">Head of IT</small>
-                </div>
-              </div>
-            </td>
-            <td class="contacts">
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
-            </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/nl.svg" /> Amsterdam</td>
-            <td class="calls">
-              <span class="badge badge-secondary">4</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="order" scope="row">5</th>
-            <td>
-              <div class="media align-items-center">
-                <div class="customers-logo">
-                  <a href="customers/details.html">
-                    <img alt="Logo" src="../assets/img/clients/svg/spotify.svg" class="clogo">
-                  </a>
-                </div>
-              </div>
-            </td>
-            <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">Spotify</a>
-            </td>
-            <td class="reference">
-              <div class="media align-items-center">
-                <div>
-                  <div class="avatar-parent-child">
-                    <img alt="Image placeholder" src="../assets/img/theme/light/team-5-800x800.jpg" class="avatar  rounded-circle">
-                  </div>
-                </div>
-                <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">Yvonne Knight</a>
-                  <small class="d-block font-weight-bold">COO, Co-Founder</small>
-                </div>
-              </div>
-            </td>
-            <td class="contacts">
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
-              <a href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-            </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/fr.svg" /> Paris</td>
-            <td class="calls">
-              <span class="badge badge-secondary">4</span>
+              <span class="badge badge-secondary">{{customer.order}}</span>
             </td>
           </tr>
           </tbody>

@@ -1,17 +1,17 @@
 import { CustomerReferencePerson } from './model/customer.reference.person';
 import { CompanyInterface } from '../company/company.interface';
+import { CustomerContactDetailsPerson } from './model/customer.contact.details.person';
+import { Company } from '../../../client/src/app/core/models';
 
 export interface CustomerInterface {
     id: string;
-    fullName: string
-    email: string;
-    position: string;
+    name: string;
     city: string;
     country: string;
     description: string;
-    company: CompanyInterface;
+    company: Company;
     referencePerson: CustomerReferencePerson;
-    contactDetails: string;
+    contactDetails: CustomerContactDetailsPerson;
     order: number;
     createdAt?: Date;
     updatedAt?: Date;

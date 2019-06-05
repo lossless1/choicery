@@ -2,28 +2,32 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { Company, Customer } from '../models';
+import { Customer } from '../models';
 import { map } from 'rxjs/operators';
+import {
+  CustomerResponseInterface
+} from '../../admin/customers/resolve/customer.response.interface';
 
 @Injectable()
 export class CustomersService {
-  constructor (
+  constructor(
     private apiService: ApiService
-  ) {}
-
-  get(username: string): Observable<Customer> {
-    return this.apiService.get('/customers/' + username)
-      .pipe(map((data: {profile: Customer}) => data));
+  ) {
   }
 
-  getAll(username: string): Observable<Customer> {
+  get(id: string): Observable<Customer> {
+    return this.apiService.get('/customers/' + id)
+      .pipe(map((data: Customer) => data));
+  }
+
+  getAll(): Observable<CustomerResponseInterface[]> {
     return this.apiService.get('/customers');
   }
 
-  save(customer, slug?): Observable<Customer> {
+  save(customer, id?): Observable<Customer> {
     // If we're updating an existing article
-    if (slug) {
-      return this.apiService.put('/customers/' + slug, {customer})
+    if (id) {
+      return this.apiService.put('/customers/' + id, {customer})
         .pipe(map(data => data.customer));
 
       // Otherwise, create a new article

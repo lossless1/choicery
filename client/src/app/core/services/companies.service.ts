@@ -11,23 +11,23 @@ export class CompaniesService {
     private apiService: ApiService
   ) {}
 
-  get(slug): Observable<Company> {
-    return this.apiService.get('/companies/' + slug)
+  get(id): Observable<Company> {
+    return this.apiService.get('/companies/' + id)
       .pipe(map(data => data.company));
   }
 
-  getAll(username: string): Observable<Company> {
+  getAll(): Observable<Company> {
     return this.apiService.get('/companies');
   }
 
-  destroy(slug) {
-    return this.apiService.delete('/companies/' + slug);
+  destroy(id) {
+    return this.apiService.delete('/companies/' + id);
   }
 
-  save(company, slug?): Observable<Company> {
+  save(company, id?): Observable<Company> {
     // If we're updating an existing article
-    if (slug) {
-      return this.apiService.put('/companies/' + slug, {company})
+    if (id) {
+      return this.apiService.put('/companies/' + id, {company})
         .pipe(map(data => data.company));
 
     // Otherwise, create a new article

@@ -10,6 +10,5 @@ export class RequestsComponent implements OnInit {
   }
 
   ngOnInit() {
-    import('../../../assets/js/purpose.js');
   }
 }

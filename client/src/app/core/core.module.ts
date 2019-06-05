@@ -5,8 +5,8 @@ import { HttpTokenInterceptor } from './interceptors';
 
 import {
   ApiService,
-  AuthGuard,
-  JwtService,
+  AuthGuard, CompaniesService, CustomersService,
+  JwtService, RequestsService,
   UserService
 } from './services';
 
@@ -19,7 +19,10 @@ import {
     ApiService,
     AuthGuard,
     JwtService,
-    UserService
+    UserService,
+    RequestsService,
+    CustomersService,
+    CompaniesService
   ],
   declarations: []
 })

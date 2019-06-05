@@ -5,9 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { RequestsComponent } from './requests/requests.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { RequestsService } from './requests/requests.service';
-import { HomeService } from './home/home.service';
-import { CustomersService } from './customers/customers.service';
 import { FooterComponent, HeaderComponent, SharedModule } from '../shared';
 import { NavbarComponent } from './nav/navbar.component';
 
@@ -27,9 +24,6 @@ import { NavbarComponent } from './nav/navbar.component';
     NavbarComponent,
   ],
   providers: [
-    HomeService,
-    CustomersService,
-    RequestsService,
   ],
 })
 export class AdminModule {

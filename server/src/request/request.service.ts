@@ -42,12 +42,12 @@ export class RequestService {
         request.status = '';
 
         const _customer: CustomerEntity = await this.customerService.findOne(requestData.customerId);
-        if(!_customer) throw new HttpException({customer: "with this id is not exist"}, 401);
+        if (!_customer) throw new HttpException({customer: "with this id is not exist"}, 401);
 
         request.customer = _customer;
 
         const _company = await this.companyService.findOne(requestData.companyId);
-        if(!_company) throw new HttpException({company: "with this id is not exist"}, 401);
+        if (!_company) throw new HttpException({company: "with this id is not exist"}, 401);
 
         request.company = _company;
         request.requestState = '';
