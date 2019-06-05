@@ -17,23 +17,24 @@ export class CustomersService {
 
   get(id: string): Observable<Customer> {
     return this.apiService.get('/customers/' + id)
-      .pipe(map((data: Customer) => data));
+      .pipe(map(data => data.customers));
   }
 
-  getAll(): Observable<CustomerResponseInterface[]> {
-    return this.apiService.get('/customers');
+  getAll(): Observable<Customer[]> {
+    return this.apiService.get('/customers')
+      .pipe(map(data => data.customers));
   }
 
   save(customer, id?): Observable<Customer> {
     // If we're updating an existing article
     if (id) {
       return this.apiService.put('/customers/' + id, {customer})
-        .pipe(map(data => data.customer));
+        .pipe(map(data => data.customers));
 
       // Otherwise, create a new article
     } else {
       return this.apiService.post('/customers/', {customer})
-        .pipe(map(data => data.customer));
+        .pipe(map(data => data.customers));
     }
   }
 

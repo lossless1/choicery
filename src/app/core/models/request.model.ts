@@ -1,14 +1,16 @@
-// import { Profile } from './requests.model';
+import { Company } from './company.model';
+import { Customer } from './customer.model';
+import { RequestStatusEnum } from '../../admin/requests/requests.status.enum';
 
 export interface Request {
-  slug: string;
-  title: string;
-  description: string;
-  body: string;
-  tagList: string[];
-  createdAt: string;
-  updatedAt: string;
-  favorited: boolean;
-  favoritesCount: number;
-  // author: Profile;
+  id: string;
+  fullName: string;
+  position: string;
+  prospectCompany: Company;
+  customer: Customer;
+  company: Company;
+  requestState: string;
+  status: RequestStatusEnum;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

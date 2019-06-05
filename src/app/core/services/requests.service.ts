@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 import { Request } from '../models';
+import { RequestResponseInterface } from '../../admin/requests/resolve/request.response.interface';
 
 @Injectable()
 export class RequestsService {
@@ -16,25 +17,25 @@ export class RequestsService {
     return this.apiService
       .post(
         `/requests`,
-        {comment: {body: payload}}
-      ).pipe(map(data => data.request));
+        {payload}
+      ).pipe(map(data => data.requests));
   }
 
   getAll(): Observable<Request[]> {
     return this.apiService.get(`/requests`)
-      .pipe(map(data => data.request));
+      .pipe(map(data => data.requests));
   }
 
   save(request, id?): Observable<Request> {
     // If we're updating an existing article
     if (id) {
       return this.apiService.put('/requests/' + id, {request})
-        .pipe(map(data => data.request));
+        .pipe(map(data => data.requests));
 
       // Otherwise, create a new article
     } else {
       return this.apiService.post('/requests/', {request})
-        .pipe(map(data => data.request));
+        .pipe(map(data => data.requests));
     }
   }
 
