@@ -8,16 +8,12 @@ import { User, UserService } from '../../core';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private userService: UserService
+
   ) {}
 
-  currentUser: User;
+
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
+
   }
 }

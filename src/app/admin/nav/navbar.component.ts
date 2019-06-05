@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../core/services';
+import { User } from '../../core/models';
 
 @Component({
   selector: 'navbar',
@@ -8,11 +9,18 @@ import { UserService } from '../../core/services';
 })
 
 export class NavbarComponent implements OnInit {
+
+  currentUser: User;
   constructor(public readonly router: Router,
               public readonly userService: UserService) {
   }
 
   ngOnInit() {
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+      }
+    );
   }
 
   logout() {

@@ -22,8 +22,13 @@ export class RequestsComponent implements OnInit {
       Validators.required, Validators.minLength(2), Validators.maxLength(20),
     ]),
   });
+
   constructor(private readonly requestsService: RequestsService,
               private readonly customerService: CustomersService) {
+  }
+
+  get newRequests() {
+    return this.requests.filter(request => request.status === 'todo').length
   }
 
   async ngOnInit() {
@@ -48,7 +53,7 @@ export class RequestsComponent implements OnInit {
     });
   }
 
-  async createRequest(){
+  async createRequest() {
 
   }
 }

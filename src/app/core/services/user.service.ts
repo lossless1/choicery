@@ -26,7 +26,6 @@ export class UserService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      console.log(this.jwtService.getToken());
       this.apiService.get('/users')
         .subscribe(
           user => this.setAuth(user),
@@ -60,7 +59,6 @@ export class UserService {
     return this.apiService.post('/users/login', {user: credentials})
       .pipe(map(
         user => {
-          console.log(user);
           this.setAuth(user);
           return user;
         }
