@@ -18288,7 +18288,7 @@ textarea[resize=horizontal] {
   }
 }
 .application .main-content {
-  width: 170%;
+  width: 100%;
   overflow: hidden;
 }
 .application .main-content .container,
