@@ -20,13 +20,13 @@ module.exports = {
   deploy: {
     production: {
       key: "~/.ssh/id_rsa",
-      user: 'root',
+      user: 'www-root',
       host: '185.69.152.78',
       ref: 'origin/master',
       repo: 'git@github.com:lossless1/choicery.git',
       "ssh_options": "StrictHostKeyChecking=no",
       path: '/var/www/www-root/data/www/choicery_client',
-      'post-deploy': 'npm run build:prod'
+      'post-deploy': 'npm i && npm run build:prod'
     }
   }
 };
