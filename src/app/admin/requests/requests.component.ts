@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 
 export class RequestsComponent implements OnInit {
-  requests: Request[];
+  requests: Request[] = [];
   customers: Customer[];
 
   public errors: Errors = {errors: {}};
@@ -33,7 +33,12 @@ export class RequestsComponent implements OnInit {
 
   async ngOnInit() {
     this.requests = await this.requestsService.getAll().toPromise();
+    console.log(this.requests);
     this.customers = await this.customerService.getAll().toPromise();
+
+    this.customerService.$customers.subscribe((actualCustomers) => {
+      console.log(actualCustomers);
+    });
   }
 
   async select(el, index) {
@@ -51,6 +56,10 @@ export class RequestsComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  async refreshList() {
+    this.requests = await this.requestsService.getAll().toPromise();
   }
 
   async createRequest() {

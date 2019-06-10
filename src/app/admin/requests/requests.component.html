@@ -164,7 +164,7 @@
                   <i class="fas fa-ellipsis-h"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a href="#" class="dropdown-item">Refresh</a>
+                  <a href="#" (click)="refreshList()" class="dropdown-item">Refresh</a>
                   <a href="#" class="dropdown-item">Manage Widgets</a>
                   <a href="#" class="dropdown-item">Settings</a>
                 </div>
@@ -197,11 +197,11 @@
               </div>
             </td>
             <td class="company">
-              <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+              <a [href]="request.prospectCompany.portalUrl" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
               {{request.prospectCompany.name}}
             </td>
             <td class="customer">
-              <a href="#" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+              <a [href]="request.customer.crmLink" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
               {{request.customer.name}}
             </td>
             <td class="status">
@@ -226,12 +226,12 @@
             </td>
             <td class="text-right">
               <div class="actions">
-                <a href="#" class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right"
+                <a class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right"
                    title="Description"
                    data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
                   <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="#" class="action-item" data-container="body" data-toggle="popover" data-placement="right"
+                <a class="action-item" data-container="body" data-toggle="popover" data-placement="right"
                    title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
                   <i class="far fa-id-card"></i>
                 </a>

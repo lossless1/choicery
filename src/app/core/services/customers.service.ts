@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { Customer } from '../models';
-import { map } from 'rxjs/operators';
-import {
-  CustomerResponseInterface
-} from '../../admin/customers/resolve/customer.response.interface';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class CustomersService {
+  public $customers: BehaviorSubject<Customer[]> = new BehaviorSubject([]);
+
   constructor(
     private apiService: ApiService
   ) {
@@ -22,7 +21,10 @@ export class CustomersService {
 
   getAll(): Observable<Customer[]> {
     return this.apiService.get('/customers')
-      .pipe(map(data => data.customers));
+      .pipe(map(data => data.customers),
+        tap((customers) => {
+          this.$customers.next(customers);
+        }));
   }
 
   save(customer, id?): Observable<Customer> {

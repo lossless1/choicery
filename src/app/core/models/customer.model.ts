@@ -12,6 +12,7 @@ export interface Customer {
   referencePerson: CustomerReferencePerson;
   contactDetails: CustomerContactDetailsPerson;
   order: number;
+  crmLink: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

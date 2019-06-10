@@ -49,7 +49,7 @@ function getUglifyOptions(supportES2015, enableCompress) {
   };
 }
 
-module.exports = function(env) {
+module.exports = function (env) {
   const ENV = (process.env.NODE_ENV = process.env.ENV = 'production');
   const supportES2015 = buildUtils.supportES2015(buildUtils.DEFAULT_METADATA.tsConfigPath);
   const sourceMapEnabled = process.env.SOURCE_MAP === '1';
@@ -63,7 +63,7 @@ module.exports = function(env) {
   // set environment suffix so these environments are loaded.
   METADATA.envFileSuffix = METADATA.E2E ? 'e2e.prod' : 'prod';
 
-  return webpackMerge(commonConfig({ env: ENV, metadata: METADATA }), {
+  return webpackMerge(commonConfig({env: ENV, metadata: METADATA}), {
     mode: 'production',
 
     devtool: 'source-map',
@@ -79,7 +79,7 @@ module.exports = function(env) {
        *
        * See: https://webpack.js.org/configuration/output/#output-path
        */
-      path: helpers.root('dist'),
+      path: helpers.root('../../choicery.app'),
 
       /**
        * Specifies the name of each output file on disk.
@@ -157,7 +157,7 @@ module.exports = function(env) {
      * See: https://webpack.js.org/configuration/plugins/
      */
     plugins: [
-      new MiniCssExtractPlugin({ filename: '[name]-[hash].css', chunkFilename: '[name]-[chunkhash].css' }),
+      new MiniCssExtractPlugin({filename: '[name]-[hash].css', chunkFilename: '[name]-[chunkhash].css'}),
       new HashedModuleIdsPlugin()
     ],
 

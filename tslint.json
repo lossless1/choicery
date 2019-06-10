@@ -4,7 +4,8 @@
   ],
   "linterOptions": {
     "exclude": [
-      "src/*.d.ts"
+      "src/*.d.ts",
+      "**/*.js"
     ]
   },
   "rulesDirectory": [
@@ -46,7 +47,7 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [
-      true,
+      false,
       "single",
       "avoid-escape"
     ],

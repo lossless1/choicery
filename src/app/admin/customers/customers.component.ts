@@ -8,12 +8,20 @@ import { Customer } from '../../core/models';
 })
 
 export class CustomersComponent implements OnInit {
-  customers: Customer[];
+  customers: Customer[] = [];
 
   constructor(private readonly customersService: CustomersService) {
   }
 
-  public async ngOnInit() {
+  public ngOnInit() {
+    this.customersService.getAll().subscribe((customers) => {
+      this.customers = customers;
+    });
+    //
+
+  }
+
+  async refreshList() {
     this.customers = await this.customersService.getAll().toPromise();
   }
 }
