@@ -20,7 +20,7 @@ module.exports = {
   deploy: {
     production: {
       key: "~/.ssh/id_rsa",
-      user: 'www-root',
+      user: 'root',
       host: '185.69.152.78',
       ref: 'origin/master',
       repo: 'git@github.com:lossless1/choicery.git',
