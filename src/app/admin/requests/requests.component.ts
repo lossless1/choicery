@@ -33,12 +33,7 @@ export class RequestsComponent implements OnInit {
 
   async ngOnInit() {
     this.requests = await this.requestsService.getAll().toPromise();
-    console.log(this.requests);
     this.customers = await this.customerService.getAll().toPromise();
-
-    this.customerService.$customers.subscribe((actualCustomers) => {
-      console.log(actualCustomers);
-    });
   }
 
   async select(el, index) {
@@ -51,7 +46,6 @@ export class RequestsComponent implements OnInit {
     try {
       const request = await this.requestsService
         .save(data, this.requests[index].id).toPromise();
-      console.log(request);
       this.requests[index].status = request.status;
     } catch (e) {
       console.error(e);
@@ -69,7 +63,6 @@ export class RequestsComponent implements OnInit {
 
   async refreshList() {
     this.requests = await this.requestsService.getAll().toPromise();
-    console.log(this.requests);
   }
 
   async createRequest() {
