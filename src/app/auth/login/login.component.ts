@@ -53,10 +53,8 @@ export class LoginComponent implements OnInit {
   public submitForm() {
     this.isSubmitting = true;
     this.errors = {errors: {}};
-
-    const credentials = {...this.authForm.value, companyId: '123'};
     this.userService
-      .attemptAuth(credentials)
+      .attemptAuth(this.authForm.value)
       .subscribe(
         data => this.router.navigateByUrl('/admin/requests'),
         err => {

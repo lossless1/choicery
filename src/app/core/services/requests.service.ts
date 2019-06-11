@@ -29,8 +29,7 @@ export class RequestsService {
   save(request, id?): Observable<Request> {
     // If we're updating an existing article
     if (id) {
-      return this.apiService.put('/requests/' + id, {request})
-        .pipe(map(data => data.requests));
+      return this.apiService.put('/requests/' + id, {request});
 
       // Otherwise, create a new article
     } else {

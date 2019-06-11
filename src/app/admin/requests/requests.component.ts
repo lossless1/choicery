@@ -28,7 +28,7 @@ export class RequestsComponent implements OnInit {
   }
 
   get newRequests() {
-    return this.requests.filter(request => request.status === 'todo').length
+    return this.requests.filter(request => request.status === 'todo').length;
   }
 
   async ngOnInit() {
@@ -43,10 +43,19 @@ export class RequestsComponent implements OnInit {
 
   async select(el, index) {
     const currentStatus = el.getAttribute('data-select');
-    const currentRequest = this.requests[index];
-    await this.requestsService.save(
-      {...currentRequest, status: currentStatus},
-      this.requests[index].id).toPromise();
+    const data = {status: currentStatus};
+    await this.update(data, index);
+  }
+
+  async update(data, index) {
+    try {
+      const request = await this.requestsService
+        .save(data, this.requests[index].id).toPromise();
+      console.log(request);
+      this.requests[index].status = request.status;
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async delete(index) {
@@ -60,6 +69,7 @@ export class RequestsComponent implements OnInit {
 
   async refreshList() {
     this.requests = await this.requestsService.getAll().toPromise();
+    console.log(this.requests);
   }
 
   async createRequest() {
