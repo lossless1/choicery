@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Errors } from '../../core/models';
 import { UserService } from '../../core/services';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   /**
@@ -34,11 +35,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private  titleService: Title
   ) {
   }
 
   public ngOnInit() {
+    this.titleService.setTitle('Login');
     // console.log('Initial App State', this.appState.state);
   }
 
@@ -58,7 +61,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => this.router.navigateByUrl('/admin/requests'),
         err => {
-          console.log(err);
           this.errors = err;
           this.isSubmitting = false;
         }

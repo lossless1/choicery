@@ -63,9 +63,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label mb-0">Description</label>
-                    <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is
-                      needed
-                    </small>
+                    <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is needed</small>
                     <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
                   </div>
                 </div>
@@ -79,6 +77,25 @@
         </div>
       </div>
     </div>
+    <div class="modal fade modal-confirm"  id="modal-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete request</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete request from <strong class="username">Ariana Barros</strong>?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Page title -->
     <div class="page-title mt-4">
       <div class="row justify-content-between align-items-center">
@@ -86,8 +103,7 @@
           <!-- Page title + Go Back button -->
           <div class="d-inline-block">
             <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
-              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin"
-                 data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
               Requests
             </h5>
           </div>
@@ -111,8 +127,7 @@
                             </a>
             -->
           </div>
-          <a href="#modal-project-create" class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4"
-             data-toggle="modal">
+          <a href="#modal-project-create" class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4" data-toggle="modal">
             <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
           </a>
         </div>
@@ -129,8 +144,7 @@
             </div>
             <input type="text" class="form-control form-control-flush" placeholder="Type and hit enter ...">
             <div class="input-group-append">
-              <a href="#" class="input-group-text bg-transparent" data-action="search-close"
-                 data-target="#actions-search"><i class="fas fa-times"></i></a>
+              <a href="#" class="input-group-text bg-transparent" data-action="search-close" data-target="#actions-search"><i class="fas fa-times"></i></a>
             </div>
           </div>
         </div>
@@ -139,11 +153,9 @@
             <h6 class="d-inline-block mb-0">Requests</h6>
           </div>
           <div class="col text-right">
-            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open"
-                                    data-target="#actions-search"><i class="fas fa-search"></i></a>
+            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open" data-target="#actions-search"><i class="fas fa-search"></i></a>
               <div class="dropdown mr-3">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-filter"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -159,8 +171,7 @@
                 </div>
               </div>
               <div class="dropdown" data-toggle="dropdown">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-h"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -178,44 +189,46 @@
         <table class="table align-items-center">
           <thead>
           <tr>
-            <th scope="col" class="sort" data-sort="id">ID</th>
+            <th scope="col" class="sort" data-sort="id">Id</th>
+            <th scope="col">Note</th>
             <th scope="col" class="sort" data-sort="name">Fullname</th>
             <th scope="col" class="sort" data-sort="company">Company</th>
             <th scope="col" class="sort" data-sort="customer">Customer</th>
             <th scope="col" class="sort" data-sort="status">Status</th>
+            <th scope="col" class="sort" data-sort="lastModified">Last Modified</th>
             <th scope="col" class="text-right">Action</th>
           </tr>
           </thead>
           <tbody class="list">
-
-          <tr *ngFor="let request of requests; let i = index" [class.row-status-todo]="request.status === 'todo'">
-            <th scope="row"><a href="../app/requests/details.html" class="name mb-0 h6 text-sm">{{i + 1}}</a></th>
+          <tr *ngFor="let request of requests; let i = index" [class.row-status-toBeDone]="request.status === 'todo'">
+            <td scope="row" class="id">
+              <a class="id mb-0 h6 text-sm"><i class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
+            </td>
             <td class="name">
               <div class="media-body">
-                <a href="requests/details.html" class="name h6 mb-0 text-sm">{{request.fullName}}</a>
-                <small class="d-block font-weight-bold">{{request.position}}</small>
+                <strong>{{request.fullName}}</strong>
+                <small>{{request.position}}</small>
               </div>
             </td>
             <td class="company">
-              <a [href]="request.prospectCompany.portalUrl" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+              <a [href]="request.prospectCompany.portalUrl" target="_blank"><i class="fas fa-external-link-alt mr-1"></i></a>
               {{request.prospectCompany.name}}
             </td>
+
             <td class="customer">
-              <a [href]="request.customer.crmLink" class="mr-2" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+              <a [href]="request.customer.crmLink" target="_blank"><i class="fas fa-external-link-alt mr-1"></i></a>
               {{request.customer.name}}
             </td>
             <td class="status">
-              <div class="dropdown status-{{request.status ? request.status : 'todo'}}">
+              <div class="dropdown status-{{request.status ? request.status : 'toBeDone'}}">
                 <a href="#" class="" id="status-row-1" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                   <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
                   <div class="dropdown-menu" aria-labelledby="status-row-1">
-                    <a class="dropdown-item status-link-todo" #todo href="#" data-select="todo" (click)="select(todo, i)"><span
-                      class="status-circule status-todo"></span>ToDo</a>
-                    <a class="dropdown-item status-link-open" #open href="#" data-select="open" (click)="select(open, i)"><span
-                      class="status-circule status-open"></span>Open</a>
-                    <a class="dropdown-item status-link-scheduled" #scheduled href="#" data-select="scheduled"
-                       (click)="select(scheduled, i)"><span class="status-circule status-scheduled"></span>Scheduled</a>
+                    <a class="dropdown-item status-link-toBeDone" #todo href="#" data-select="todo" (click)="select(todo, i)">
+                      <span class="status-circule status-toBeDone"></span>ToDo</a>
+                    <a class="dropdown-item status-link-inProgress" #inProgress href="#" data-select="open" (click)="select(inProgress, i)"><span
+                      class="status-circule status-inProgress"></span>In Progress</a>
                     <a class="dropdown-item status-link-done" #done href="#" data-select="done" (click)="select(done, i)"><span
                       class="status-circule status-done"></span>Done</a>
                     <a class="dropdown-item status-link-canceled" #canceled href="#" data-select="canceled"
@@ -224,24 +237,38 @@
                 </a>
               </div>
             </td>
-            <td class="text-right">
-              <div class="actions">
-                <a class="action-item mr-2" data-container="body" data-toggle="popover" data-placement="right"
-                   title="Description"
-                   data-content="This is a very beautiful popover, show some details about what kind of feedback user is looking for.">
-                  <i class="fas fa-info-circle"></i>
+            <td class="lastModified">
+              Yesterday
+            </td>
+
+            <td class="col-actions text-right">
+              <div class="dropdown" data-toggle="dropdown">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-h"></i>
                 </a>
-                <a class="action-item" data-container="body" data-toggle="popover" data-placement="right"
-                   title="Contact details" data-content="phone: +380937121976, alexz@choicery.com">
-                  <i class="far fa-id-card"></i>
+                <div class="dropdown-menu dropdown-menu-right menu-actions" aria-haspopup="true" aria-expanded="false">
+                  <a href="#" class="dropdown-item"><i class="fas fa-eye"></i>View</a>
+                  <a href="#" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" (click)="delete(i)" class="dropdown-item text-danger" data-toggle="modal"><i class="fas fa-trash"></i>Delete</a>
+                </div>
+              </div>
+            </td>
+
+            <td class="col-actions text-right">
+              <div class="dropdown" data-toggle="dropdown">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-h"></i>
                 </a>
-                <span class="action-separator pl-3 pr-3">|</span>
-                <a (click)="delete(i)" class="action-item text-danger"><i class="fas fa-trash"></i></a>
+                <div class="dropdown-menu dropdown-menu-right menu-actions" aria-haspopup="true" aria-expanded="false">
+                  <a href="#" class="dropdown-item"><i class="fas fa-eye"></i>View</a>
+                  <a href="#" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#modal-confirm" class="dropdown-item text-danger" data-toggle="modal"><i class="fas fa-trash"></i>Delete</a>
+                </div>
               </div>
             </td>
           </tr>
-
-
           </tbody>
         </table>
       </div>

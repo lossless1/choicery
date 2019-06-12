@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer, Errors, Request } from '../../core/models';
 import { CustomersService, RequestsService } from '../../core/services';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'requests',
@@ -24,7 +25,8 @@ export class RequestsComponent implements OnInit {
   });
 
   constructor(private readonly requestsService: RequestsService,
-              private readonly customerService: CustomersService) {
+              private readonly customerService: CustomersService,
+              private readonly titleService: Title) {
   }
 
   get newRequests() {
@@ -32,6 +34,7 @@ export class RequestsComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.titleService.setTitle('Requests');
     this.requests = await this.requestsService.getAll().toPromise();
     this.customers = await this.customerService.getAll().toPromise();
   }
@@ -56,8 +59,6 @@ export class RequestsComponent implements OnInit {
     this.requestsService.destroy(
       this.requests[index].id).subscribe(() => {
       this.requests.splice(index, 1);
-    }, (error) => {
-      console.log(error);
     });
   }
 

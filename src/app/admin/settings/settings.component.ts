@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'settings',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SettingsComponent implements OnInit {
-  constructor() {
+  constructor(private readonly titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Settings');
+
   }
 }
