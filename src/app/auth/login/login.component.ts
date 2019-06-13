@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from '../../app.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Errors } from '../../core/models';
@@ -36,13 +35,12 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private  titleService: Title
+    private titleService: Title
   ) {
   }
 
   public ngOnInit() {
     this.titleService.setTitle('Login');
-    // console.log('Initial App State', this.appState.state);
   }
 
   public togglePasswordView() {

@@ -8,7 +8,6 @@ import { Title } from '@angular/platform-browser';
   selector: 'requests',
   templateUrl: 'requests.component.html'
 })
-
 export class RequestsComponent implements OnInit {
   requests: Request[] = [];
   customers: Customer[];

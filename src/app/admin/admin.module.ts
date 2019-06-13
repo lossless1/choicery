@@ -7,8 +7,9 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FooterComponent, HeaderComponent, SharedModule } from '../shared';
 import { NavbarComponent } from './nav/navbar.component';
-import { DetailsComponent } from './customers/details/details.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DetailsCustomersComponent } from './customers/details/details.customers.component';
+import { DetailsRequestsComponent } from './requests/details/details.requests.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SettingsComponent } from './settings/settings.component';
     HeaderComponent,
     FooterComponent,
     CustomersComponent,
-    DetailsComponent,
+    DetailsCustomersComponent,
+    DetailsRequestsComponent,
     SettingsComponent,
     HomeComponent,
     RequestsComponent,
