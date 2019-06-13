@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Errors } from '../../core/models';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../core/services';
+import { CompaniesService, UserService } from '../../core/services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,19 +16,19 @@ export class RegisterComponent implements OnInit {
   public errors: Errors = {errors: {}};
   public isSubmitting = false;
   public registerForm: FormGroup = new FormGroup({
-    fullName: new FormControl('', [
+    fullName: new FormControl('jjjjj', [
       Validators.required, Validators.minLength(3), Validators.maxLength(20)
     ]),
-    companyName: new FormControl('', [
+    companyName: new FormControl('oooopppoooo', [
       Validators.required, Validators.minLength(2), Validators.maxLength(20)
     ]),
-    email: new FormControl('', [
+    email: new FormControl('error@gmail.com', [
       Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.email
     ]),
     passwords: new FormGroup({
-      password: new FormControl('',
+      password: new FormControl('123456',
         [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-      confirmPassword: new FormControl('', [
+      confirmPassword: new FormControl('123456', [
         Validators.required, Validators.minLength(6),
         Validators.maxLength(20)
       ]),
@@ -41,15 +41,12 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
+              private companyService: CompaniesService,
               private router: Router,
               private titleService: Title) {
   }
 
   passwordMatchValidator(g: FormGroup) {
-    console.log(123123123);
-    console.log(g);
-    console.log(g.get('password').value === g.get('confirmPassword').value
-      ? null : {mismatch: true});
     return g.get('password').value === g.get('confirmPassword').value
       ? null : {mismatch: true};
   }
@@ -67,7 +64,6 @@ export class RegisterComponent implements OnInit {
   }
 
   get password() {
-    console.log(this.registerForm);
     return this.registerForm.get('passwords.password');
   }
 
@@ -99,17 +95,32 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  handleError(err) {
+    this.errors = err;
+    this.isSubmitting = false;
+  }
+
   public submitForm() {
     this.isSubmitting = true;
     this.errors = {errors: {}};
-    this.userService
-      .attemptAuth(this.registerForm.value)
-      .subscribe(
-        data => this.router.navigateByUrl('/login'),
-        err => {
-          this.errors = err;
-          this.isSubmitting = false;
-        }
-      );
+    const companyData = {name: this.companyName.value};
+    const userData = {
+      fullName: this.fullName.value,
+      password: this.password.value,
+      email: this.email.value,
+    };
+    this.companyService
+      .save(companyData).subscribe(
+      data => this.userService
+        .attemptRegister({...userData, companyId: data.id})
+        .subscribe(() =>
+            this.router.navigateByUrl('/login'),
+          err => {
+            this.handleError(err);
+          }),
+      err => {
+        this.handleError(err);
+      }
+    );
   }
 }

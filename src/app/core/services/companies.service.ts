@@ -28,12 +28,10 @@ export class CompaniesService {
     // If we're updating an existing article
     if (id) {
       return this.apiService.put('/companies/' + id, {company})
-        .pipe(map(data => data.company));
 
     // Otherwise, create a new article
     } else {
       return this.apiService.post('/companies/', {company})
-        .pipe(map(data => data.company));
     }
   }
 

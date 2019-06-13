@@ -66,7 +66,7 @@ export class UserService {
   }
 
   attemptRegister(credentials): Observable<User> {
-    return this.apiService.post('/users/register', {user: credentials})
+    return this.apiService.post('/users', {user: credentials})
       .pipe(map(
         user => {
           this.setAuth(user);

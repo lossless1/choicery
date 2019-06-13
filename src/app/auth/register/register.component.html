@@ -12,6 +12,7 @@
                     <p class="text-muted mb-0">All fields in form are requered.</p>
                   </div>
                   <span class="clearfix"></span>
+                  <app-list-errors [errors]="errors"></app-list-errors>
                   <form role="form" [formGroup]="registerForm" (ngSubmit)="submitForm()">
                     <div class="form-group">
                       <label class="form-control-label">Fullname</label>
