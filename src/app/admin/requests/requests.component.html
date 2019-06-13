@@ -38,32 +38,48 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label">Customer</label>
                     <select class="form-control select2-customers" data-toggle="select">
-                      <option value="Argus">Argus</option>
-                      <option value="Cigna">Cigna</option>
-                      <option value="Vision X">Vision X</option>
-                      <option value="Envision">Envision</option>
-                      <option value="CVS/Caremark">CVS/Caremark</option>
-                      <option value="OptumRx">OptumRx</option>
+                      <option value="Cleaning Masters">Cleaning Masters</option>
+                      <option value="Documenter">Documenter</option>
+                      <option value="The Number One Lab">The Number One Lab</option>
+                      <option value="Treegoos">Treegoos</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Status</label>
+                    <select class="form-control select2-customers" data-toggle="select">
+                      <option value="To be Done">To be Done</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Done">Done</option>
+                      <option value="Canceled">Canceled</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label mb-0">Contacts</label>
-                    <small class="form-text text-muted mb-2 mt-0">Any preferred contact way</small>
+                    <small class="form-text text-muted mb-2 mt-0">Any preferred prospect contact way</small>
                     <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label mb-0">Description</label>
                     <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is needed</small>
+                    <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label mb-0">Note</label>
+                    <small class="form-text text-muted mb-2 mt-0">Any internal information important for making this request happen</small>
                     <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
                   </div>
                 </div>
@@ -201,7 +217,7 @@
           </thead>
           <tbody class="list">
           <tr *ngFor="let request of requests; let i = index" [class.row-status-toBeDone]="request.status === 'todo'">
-            <td scope="row" class="id">
+            <td scope="row" class="id"href="../app/requests/details.html">
               <a class="id mb-0 h6 text-sm"><i class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
             </td>
             <td class="name">
