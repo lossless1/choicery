@@ -16,19 +16,19 @@ export class RegisterComponent implements OnInit {
   public errors: Errors = {errors: {}};
   public isSubmitting = false;
   public registerForm: FormGroup = new FormGroup({
-    fullName: new FormControl('jjjjj', [
+    fullName: new FormControl('', [
       Validators.required, Validators.minLength(3), Validators.maxLength(20)
     ]),
-    companyName: new FormControl('oooopppoooo', [
+    companyName: new FormControl('', [
       Validators.required, Validators.minLength(2), Validators.maxLength(20)
     ]),
-    email: new FormControl('error@gmail.com', [
+    email: new FormControl('', [
       Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.email
     ]),
     passwords: new FormGroup({
-      password: new FormControl('123456',
+      password: new FormControl('',
         [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-      confirmPassword: new FormControl('123456', [
+      confirmPassword: new FormControl('', [
         Validators.required, Validators.minLength(6),
         Validators.maxLength(20)
       ]),
