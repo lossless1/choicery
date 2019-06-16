@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ValidationErrors } from '@angular/forms';
+import { ListErrorsEnums } from './enums/list-errors.enums';
 
 @Component({
   selector: 'app-list-errors',
@@ -12,12 +13,12 @@ export class ListErrorsComponent {
 
   @Input()
   set errors(errorList: ValidationErrors) {
-    console.log(errorList);
     this.formattedErrors = Object.keys(errorList.errors || {})
-      .map(key => `${key} ${errorList.errors[key]}`);
+      .map(key => `${ListErrorsEnums[key]}}`);
   }
 
-  get errorList() { return this.formattedErrors; }
-
-
+  get errorList() {
+    console.log(this.formattedErrors);
+    return this.formattedErrors;
+  }
 }

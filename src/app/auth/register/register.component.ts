@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     checkTerms: new FormControl('', [
       Validators.required
     ]),
-  });
+  }, {updateOn: 'blur'});
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
   }
 
   isValid(prop: AbstractControl) {
-    return prop.invalid && (prop.dirty || prop.touched);
+    return prop.invalid && prop.dirty && prop.touched;
   }
 
   ngOnInit() {

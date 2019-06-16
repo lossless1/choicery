@@ -217,8 +217,13 @@
           </thead>
           <tbody class="list">
           <tr *ngFor="let request of requests; let i = index" [class.row-status-toBeDone]="request.status === 'todo'">
-            <td scope="row" class="id"href="../app/requests/details.html">
-              <a class="id mb-0 h6 text-sm"><i class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
+            <td scope="row" class="id">
+              <a href="../app/requests/details.html" class="id mb-0 h6 text-sm"><i class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
+            </td>
+            <td>
+              <a href="#" data-toggle="popover" data-placement="top" data-content="It's empty. Yet.">
+                <i class="far text-muted fa-comment-alt"></i>
+              </a>
             </td>
             <td class="name">
               <div class="media-body">
@@ -267,20 +272,6 @@
                   <a href="#" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
                   <div class="dropdown-divider"></div>
                   <a href="#" (click)="delete(i)" class="dropdown-item text-danger" data-toggle="modal"><i class="fas fa-trash"></i>Delete</a>
-                </div>
-              </div>
-            </td>
-
-            <td class="col-actions text-right">
-              <div class="dropdown" data-toggle="dropdown">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-h"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right menu-actions" aria-haspopup="true" aria-expanded="false">
-                  <a href="#" class="dropdown-item"><i class="fas fa-eye"></i>View</a>
-                  <a href="#" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#modal-confirm" class="dropdown-item text-danger" data-toggle="modal"><i class="fas fa-trash"></i>Delete</a>
                 </div>
               </div>
             </td>
