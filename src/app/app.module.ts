@@ -15,11 +15,14 @@ import { AppState } from './app.service';
 import { NoContentComponent } from './shared/no-content';
 
 import '../styles/styles.scss';
+import '../styles/main.scss';
+
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared';
 import { CoreModule } from './core';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -48,6 +51,7 @@ const APP_PROVIDERS = [
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
+    NgbModule
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

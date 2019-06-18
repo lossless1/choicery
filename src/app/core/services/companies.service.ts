@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { map } from 'rxjs/operators';
-import { Company } from '../models';
+import { map, tap } from 'rxjs/operators';
+import { Company, Customer } from '../models';
 
 @Injectable()
 export class CompaniesService {
-  constructor (
-    private apiService: ApiService
-  ) {}
+  public $companies: ReplaySubject<Company> = new ReplaySubject(1);
 
-  get(id): Observable<Company> {
+  constructor(
+    private apiService: ApiService
+  ) {
+  }
+
+  get(id: string): Observable<Company> {
     return this.apiService.get('/companies/' + id)
-      .pipe(map(data => data.company));
+      .pipe(tap((company) => {
+        this.$companies.next(company);
+      }));
   }
 
   getAll(): Observable<Company> {
@@ -28,11 +33,16 @@ export class CompaniesService {
     // If we're updating an existing article
     if (id) {
       return this.apiService.put('/companies/' + id, {company})
+        .pipe(tap((companies) => {
+            this.$companies.next(companies);
+          }));
 
-    // Otherwise, create a new article
+      // Otherwise, create a new article
     } else {
       return this.apiService.post('/companies/', {company})
+        .pipe(tap((companies) => {
+            this.$companies.next(companies);
+          }) );
     }
   }
-
 }

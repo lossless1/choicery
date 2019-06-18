@@ -12,7 +12,7 @@
                     <p class="text-muted mb-0">All fields in form are requered.</p>
                   </div>
                   <span class="clearfix"></span>
-                  <app-list-errors [errors]="errors"></app-list-errors>
+                  <app-list-errors [control]="errors"></app-list-errors>
                   <form role="form" [formGroup]="registerForm" (ngSubmit)="submitForm()">
                     <div class="form-group">
                       <label class="form-control-label">Fullname</label>
@@ -23,10 +23,8 @@
                         <input formControlName="fullName" type="text" class="form-control" id="fullname"
                                placeholder="Jon Snow">
                       </div>
-                      <div *ngIf="isValid(fullName)">
-                        <app-list-errors
-                          [errors]="{errors: fullName.errors}"></app-list-errors>
-                      </div>
+                      <app-list-errors
+                        [control]="fullName"></app-list-errors>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Company</label>
@@ -37,10 +35,8 @@
                         <input formControlName="companyName" type="text" class="form-control" id="companyName"
                                placeholder="The Wall">
                       </div>
-                      <div *ngIf="isValid(companyName)">
                         <app-list-errors
-                          [errors]="{errors: companyName.errors}"></app-list-errors>
-                      </div>
+                          [control]="companyName"></app-list-errors>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Email</label>
@@ -51,10 +47,8 @@
                         <input formControlName="email" type="email" class="form-control" id="email"
                                placeholder="name@example.com">
                       </div>
-                      <div *ngIf="isValid(email)">
                         <app-list-errors
-                          [errors]="{errors: email.errors}"></app-list-errors>
-                      </div>
+                          [control]="email"></app-list-errors>
                     </div>
                     <div formGroupName="passwords">
                       <div class="form-group mb-4">
@@ -63,7 +57,8 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                           </div>
-                          <input formControlName="password" [type]="typePasswordInput" class="form-control" id="password"
+                          <input formControlName="password" [type]="typePasswordInput" class="form-control"
+                                 id="password"
                                  placeholder="********">
                           <div class="input-group-append">
                             <span class="input-group-text">
@@ -74,10 +69,8 @@
                             </span>
                           </div>
                         </div>
-                        <div *ngIf="isValid(password)">
                           <app-list-errors
-                            [errors]="{errors: password.errors}"></app-list-errors>
-                        </div>
+                            [control]="password"></app-list-errors>
                       </div>
                       <div class="form-group">
                         <label class="form-control-label">Confirm password</label>
@@ -88,15 +81,11 @@
                           <input formControlName="confirmPassword" type="password" class="form-control"
                                  id="password-confirm" placeholder="********">
                         </div>
-                        <div *ngIf="isValid(confirmPassword)">
                           <app-list-errors
-                            [errors]="{errors: confirmPassword.errors}"></app-list-errors>
-                        </div>
+                            [control]="confirmPassword"></app-list-errors>
                       </div>
-                      <div *ngIf="isValid(passwords)">
                         <app-list-errors
-                          [errors]="{errors: passwords.errors}"></app-list-errors>
-                      </div>
+                          [control]="passwords"></app-list-errors>
                     </div>
                     <div class="my-4">
                       <div class="custom-control custom-checkbox mb-3">
@@ -105,6 +94,8 @@
                         <label class="custom-control-label" for="check-terms">I agree to the <a href="#">terms and
                           conditions</a> and <a href="#">privacy policy</a></label>
                       </div>
+                      <app-list-errors
+                        [control]="checkTerms"></app-list-errors>
                     </div>
                     <div class="mt-4">
                       <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill"

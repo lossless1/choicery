@@ -1,0 +1,7 @@
+.badge:empty {
+  display: block !important;
+}
+
+.dropdown-toggle:empty::after {
+  margin-left: 10.2px !important;
+}

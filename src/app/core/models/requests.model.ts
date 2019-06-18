@@ -1,8 +1,8 @@
 import { Company } from './company.model';
 import { Customer } from './customer.model';
-import { RequestStatusEnum } from '../../admin/requests/requests.status.enum';
+import { RequestStatusEnum } from '../../shared/enums/requests.status.enum';
 
-export interface Request {
+export interface Requests {
   id: string;
   fullName: string;
   position: string;
@@ -11,6 +11,7 @@ export interface Request {
   company: Company;
   requestState: string;
   status: RequestStatusEnum;
+  note: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

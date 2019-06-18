@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
-import { Request } from '../models';
+import { Requests } from '../models';
 import { RequestResponseInterface } from '../../admin/requests/resolve/request.response.interface';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class RequestsService {
   ) {
   }
 
-  add(payload): Observable<Request> {
+  add(payload): Observable<Requests> {
     return this.apiService
       .post(
         `/requests`,
@@ -21,12 +21,12 @@ export class RequestsService {
       ).pipe(map(data => data.requests));
   }
 
-  getAll(): Observable<Request[]> {
+  getAll(): Observable<Requests[]> {
     return this.apiService.get(`/requests`)
       .pipe(map(data => data.requests));
   }
 
-  save(request, id?): Observable<Request> {
+  save(request, id?): Observable<Requests> {
     // If we're updating an existing article
     if (id) {
       return this.apiService.put('/requests/' + id, {request});

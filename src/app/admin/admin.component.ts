@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../core/models';
-import { UserService } from '../core/services';
+import { CompaniesService, UserService } from '../core/services';
 
 @Component({
   selector: 'admin',
@@ -10,13 +10,17 @@ import { UserService } from '../core/services';
 export class AdminComponent implements OnInit {
 
   currentUser: User;
-  constructor(private userService: UserService) {
+
+  constructor(private userService: UserService, private companyService: CompaniesService) {
   }
 
   ngOnInit() {
     this.userService.currentUser.subscribe(
-      (userData) => {
+      async (userData) => {
         this.currentUser = userData;
+        if (this.currentUser) {
+          await this.companyService.get(this.currentUser.companyId).toPromise();
+        }
       }
     );
   }

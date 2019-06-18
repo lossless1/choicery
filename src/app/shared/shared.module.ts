@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ListErrorsComponent } from './list-errors.component';
+import { ListErrorsComponent } from './validator/list-error/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
 
 @NgModule({

@@ -40,10 +40,6 @@ td.contacts a i.color-tw {
   color: #1DA1F2;
 }
 
-.badge:empty {
-  display: block !important;
-}
-
 .dropdown-toggle::after {
   margin-left: 10.2px !important;
 }

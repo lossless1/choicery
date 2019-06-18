@@ -1,99 +1,118 @@
 <div class="main-content position-relative">
-  <!-- Main nav -->
-
-  <!-- Page content -->
   <div class="page-content">
-    <!-- Create project modal -->
-    <div class="modal fade modal-add" id="modal-project-create" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
+    <ng-template #content let-modal>
+      <div class="modal-content">
+        <form [formGroup]="requestForm" (ngSubmit)="createRequest(modal)">
           <div class="modal-body">
-            <form>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Company name</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Company website</label>
-                    <input type="text" class="form-control">
-                  </div>
+            <app-list-errors [errorsServer]="errors"></app-list-errors>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Company name</label>
+                  <input formControlName="companyName" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('companyName')"></app-list-errors>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Fullname</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Position</label>
-                    <input type="text" class="form-control">
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Company website</label>
+                  <input formControlName="companyWebsite" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('companyWebsite')"></app-list-errors>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Customer</label>
-                    <select class="form-control select2-customers" data-toggle="select">
-                      <option value="Cleaning Masters">Cleaning Masters</option>
-                      <option value="Documenter">Documenter</option>
-                      <option value="The Number One Lab">The Number One Lab</option>
-                      <option value="Treegoos">Treegoos</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Status</label>
-                    <select class="form-control select2-customers" data-toggle="select">
-                      <option value="To be Done">To be Done</option>
-                      <option value="In Progress">In Progress</option>
-                      <option value="Done">Done</option>
-                      <option value="Canceled">Canceled</option>
-                    </select>
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Fullname</label>
+                  <input formControlName="fullName" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('fullName')"></app-list-errors>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label mb-0">Contacts</label>
-                    <small class="form-text text-muted mb-2 mt-0">Any preferred prospect contact way</small>
-                    <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label mb-0">Description</label>
-                    <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is needed</small>
-                    <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label mb-0">Note</label>
-                    <small class="form-text text-muted mb-2 mt-0">Any internal information important for making this request happen</small>
-                    <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Position</label>
+                  <input formControlName="position" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('position')"></app-list-errors>
                 </div>
               </div>
-            </form>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Customer</label>
+                  <select formControlName="customerId" class="form-control select2-customers" data-toggle="select">
+                    <ng-container *ngFor="let customer of customers">
+                      <option [value]="customer.id">{{customer.name}}</option>
+                    </ng-container>
+                  </select>
+                  <app-list-errors
+                    [control]="getControl('customerId')"></app-list-errors>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Status</label>
+                  <select formControlName="status" class="form-control select2-customers" data-toggle="select">
+                    <ng-container *ngFor="let status of statuses">
+                      <option [value]="status.value">{{status.name}}</option>
+                    </ng-container>
+                  </select>
+                  <app-list-errors
+                    [control]="getControl('status')"></app-list-errors>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label mb-0">Contacts</label>
+                  <small class="form-text text-muted mb-2 mt-0">Any preferred prospect contact way</small>
+                  <textarea formControlName="contacts" class="form-control" data-toggle="autosize"
+                            rows="2"></textarea>
+                  <app-list-errors
+                    [control]="getControl('contacts')"></app-list-errors>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label mb-0">Description</label>
+                  <small class="form-text text-muted mb-2 mt-0">Challenge you are facing or what kind of feedback is
+                    needed
+                  </small>
+                  <textarea formControlName="description" class="form-control" data-toggle="autosize"
+                            rows="2"></textarea>
+                  <app-list-errors
+                    [control]="getControl('description')"></app-list-errors>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label mb-0">Note</label>
+                  <small class="form-text text-muted mb-2 mt-0">Any internal information important for making this
+                    request happen
+                  </small>
+                  <textarea formControlName="note" class="form-control" data-toggle="autosize" rows="2"></textarea>
+                  <app-list-errors
+                    [control]="getControl('note')"></app-list-errors>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-sm btn-primary rounded-pill" data-dismiss="modal">Add</button>
+            <button type="button" class="btn btn-sm btn-secondary rounded-pill" (click)="modal.close()">Cancel</button>
+            <button type="submit" class="btn btn-sm btn-primary rounded-pill"
+            >Add</button>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
-    <div class="modal fade modal-confirm"  id="modal-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+    </ng-template>
+
+    <div class="modal fade modal-confirm" id="modal-confirm" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -106,7 +125,7 @@
             <p>Are you sure you want to delete request from <strong class="username">Ariana Barros</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" >Cancel</button>
             <button type="button" class="btn btn-primary">Delete</button>
           </div>
         </div>
@@ -119,7 +138,8 @@
           <!-- Page title + Go Back button -->
           <div class="d-inline-block">
             <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
-              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin"
+                 data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
               Requests
             </h5>
           </div>
@@ -137,13 +157,9 @@
             <a href="#" class="action-item ml-md-4">
               <i class="fas fa-file-export mr-2"></i>Export
             </a>
-            <!--
-                            <a href="#" class="action-item ml-3">
-                              <i class="fas fa-cog mr-2"></i>Settings
-                            </a>
-            -->
           </div>
-          <a href="#modal-project-create" class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4" data-toggle="modal">
+          <a  class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4"
+             (click)="open(content)">
             <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
           </a>
         </div>
@@ -160,7 +176,8 @@
             </div>
             <input type="text" class="form-control form-control-flush" placeholder="Type and hit enter ...">
             <div class="input-group-append">
-              <a href="#" class="input-group-text bg-transparent" data-action="search-close" data-target="#actions-search"><i class="fas fa-times"></i></a>
+              <a href="#" class="input-group-text bg-transparent" data-action="search-close"
+                 data-target="#actions-search"><i class="fas fa-times"></i></a>
             </div>
           </div>
         </div>
@@ -169,9 +186,11 @@
             <h6 class="d-inline-block mb-0">Requests</h6>
           </div>
           <div class="col text-right">
-            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open" data-target="#actions-search"><i class="fas fa-search"></i></a>
+            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open"
+                                    data-target="#actions-search"><i class="fas fa-search"></i></a>
               <div class="dropdown mr-3">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                   <i class="fas fa-filter"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -187,7 +206,8 @@
                 </div>
               </div>
               <div class="dropdown" data-toggle="dropdown">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                   <i class="fas fa-ellipsis-h"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -216,13 +236,17 @@
           </tr>
           </thead>
           <tbody class="list">
-          <tr *ngFor="let request of requests; let i = index" [class.row-status-toBeDone]="request.status === 'todo'">
+          <tr *ngFor="let request of requests; let i = index"
+              [class.row-status-toBeDone]="request.status === 'toBeDone'">
             <td scope="row" class="id">
-              <a href="../app/requests/details.html" class="id mb-0 h6 text-sm"><i class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
+              <a href="../app/requests/details.html" class="id mb-0 h6 text-sm"><i
+                class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
             </td>
             <td>
-              <a href="#" data-toggle="popover" data-placement="top" data-content="It's empty. Yet.">
-                <i class="far text-muted fa-comment-alt"></i>
+              <a placement="top" autoClose="outside"
+                 [ngbPopover]="request.note ? request.note : 'It\'s empty. Yet.'">
+                <i class="fa-comment-alt" [class.text-muted]="!request.note" [class.far]="!request.note"
+                   [class.fas]="request.note"></i>
               </a>
             </td>
             <td class="name">
@@ -232,7 +256,8 @@
               </div>
             </td>
             <td class="company">
-              <a [href]="request.prospectCompany.portalUrl" target="_blank"><i class="fas fa-external-link-alt mr-1"></i></a>
+              <a [href]="request.prospectCompany.portalUrl" target="_blank"><i
+                class="fas fa-external-link-alt mr-1"></i></a>
               {{request.prospectCompany.name}}
             </td>
 
@@ -246,32 +271,37 @@
                    aria-expanded="false">
                   <span class="badge text-white rounded-pill dropdown-toggle status-value"> </span>
                   <div class="dropdown-menu" aria-labelledby="status-row-1">
-                    <a class="dropdown-item status-link-toBeDone" #todo href="#" data-select="todo" (click)="select(todo, i)">
-                      <span class="status-circule status-toBeDone"></span>ToDo</a>
-                    <a class="dropdown-item status-link-inProgress" #inProgress href="#" data-select="open" (click)="select(inProgress, i)"><span
-                      class="status-circule status-inProgress"></span>In Progress</a>
-                    <a class="dropdown-item status-link-done" #done href="#" data-select="done" (click)="select(done, i)"><span
-                      class="status-circule status-done"></span>Done</a>
-                    <a class="dropdown-item status-link-canceled" #canceled href="#" data-select="canceled"
-                       (click)="select(canceled, i)"><span class="status-circule status-canceled"></span>Canceled</a>
+                    <a class="dropdown-item status-link-toBeDone" #todo href="#" data-select="toBeDone"
+                       (click)="select(todo, i)">
+                      <span class="status-circule status-toBeDone"></span></a>
+                    <a class="dropdown-item status-link-inProgress" data-select="inProgress" #inProgress href="#"
+                       (click)="select(inProgress, i)">
+                      <span class="status-circule status-inProgress"></span></a>
+                    <a class="dropdown-item status-link-done" #done href="#" data-select="done"
+                       (click)="select(done, i)"><span
+                      class="status-circule status-done"></span></a>
+                    <a class="dropdown-item status-link-canceled" #canceled data-select="canceled" href="#"
+                       (click)="select(canceled, i)"><span class="status-circule status-canceled"></span></a>
                   </div>
                 </a>
               </div>
             </td>
             <td class="lastModified">
-              Yesterday
+              {{request.updatedAt | amTimeAgo}}
             </td>
 
             <td class="col-actions text-right">
               <div class="dropdown" data-toggle="dropdown">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                   <i class="fas fa-ellipsis-h"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right menu-actions" aria-haspopup="true" aria-expanded="false">
                   <a href="#" class="dropdown-item"><i class="fas fa-eye"></i>View</a>
                   <a href="#" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
                   <div class="dropdown-divider"></div>
-                  <a href="#" (click)="delete(i)" class="dropdown-item text-danger" data-toggle="modal"><i class="fas fa-trash"></i>Delete</a>
+                  <a href="#" (click)="delete(i)" class="dropdown-item text-danger" data-toggle="modal"><i
+                    class="fas fa-trash"></i>Delete</a>
                 </div>
               </div>
             </td>

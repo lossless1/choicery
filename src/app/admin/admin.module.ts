@@ -10,11 +10,15 @@ import { NavbarComponent } from './nav/navbar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DetailsCustomersComponent } from './customers/details/details.customers.component';
 import { DetailsRequestsComponent } from './requests/details/details.requests.component';
+import { MomentModule } from 'ngx-moment';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     SharedModule,
     AdminRoutingModule,
+    MomentModule,
+    NgbPopoverModule,
   ],
   exports: [],
   declarations: [

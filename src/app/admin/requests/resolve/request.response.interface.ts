@@ -1,6 +1,6 @@
-import { Request } from '../../../core/models';
+import { Requests } from '../../../core/models';
 
 export class RequestResponseInterface {
-  requests: Request[];
+  requests: Requests[];
   requestsLenght: number;
 }
