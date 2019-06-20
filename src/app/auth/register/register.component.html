@@ -24,7 +24,8 @@
                                placeholder="Jon Snow">
                       </div>
                       <app-list-errors
-                        [control]="fullName"></app-list-errors>
+                        [control]="fullName"
+                        [isSubmitting]="isSubmitting"></app-list-errors>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Company</label>
@@ -36,7 +37,8 @@
                                placeholder="The Wall">
                       </div>
                         <app-list-errors
-                          [control]="companyName"></app-list-errors>
+                          [control]="companyName"
+                          [isSubmitting]="isSubmitting"></app-list-errors>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Email</label>
@@ -48,7 +50,8 @@
                                placeholder="name@example.com">
                       </div>
                         <app-list-errors
-                          [control]="email"></app-list-errors>
+                          [control]="email"
+                          [isSubmitting]="isSubmitting"></app-list-errors>
                     </div>
                     <div formGroupName="passwords">
                       <div class="form-group mb-4">
@@ -70,7 +73,8 @@
                           </div>
                         </div>
                           <app-list-errors
-                            [control]="password"></app-list-errors>
+                            [control]="password"
+                            [isSubmitting]="isSubmitting"></app-list-errors>
                       </div>
                       <div class="form-group">
                         <label class="form-control-label">Confirm password</label>
@@ -82,10 +86,12 @@
                                  id="password-confirm" placeholder="********">
                         </div>
                           <app-list-errors
-                            [control]="confirmPassword"></app-list-errors>
+                            [control]="confirmPassword"
+                            [isSubmitting]="isSubmitting"></app-list-errors>
                       </div>
                         <app-list-errors
-                          [control]="passwords"></app-list-errors>
+                          [control]="passwords"
+                          [isSubmitting]="isSubmitting"></app-list-errors>
                     </div>
                     <div class="my-4">
                       <div class="custom-control custom-checkbox mb-3">
@@ -95,11 +101,11 @@
                           conditions</a> and <a href="#">privacy policy</a></label>
                       </div>
                       <app-list-errors
-                        [control]="checkTerms"></app-list-errors>
+                        [control]="checkTerms"
+                        [isSubmitting]="isSubmitting"></app-list-errors>
                     </div>
                     <div class="mt-4">
-                      <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill"
-                              [disabled]="!registerForm.valid || isSubmitting">
+                      <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill">
                         <span class="btn-inner--text">Create my account</span>
                         <span class="btn-inner--icon"><i class="fas fa-long-arrow-alt-right"></i></span>
                       </button>
