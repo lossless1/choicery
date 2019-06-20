@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     this.userService.currentUser.subscribe(
       async (userData) => {
         this.currentUser = userData;
-        if (this.currentUser) {
+        if (Object.keys(this.currentUser).length) {
           await this.companyService.get(this.currentUser.companyId).toPromise();
         }
       }

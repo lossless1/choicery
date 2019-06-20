@@ -7,18 +7,19 @@
 
 /*------------------Requests------------------*/
 .customers-logo img.clogo{
-  width: 80px;
+  height: 40px;
+  max-width: 80px;
 }
 .table-flag{
   width: 16px;
   margin-right: 4px;
   margin-top: -2px;
 }
-.name .media-body strong{
+.name .media-body strong, .reference .media-body strong{
   font-size: 1em;
   color:#333;
 }
-.name .media-body small{
+.name .media-body small, .reference .media-body small{
   font-size: 0.9em;
   display: block;
 }

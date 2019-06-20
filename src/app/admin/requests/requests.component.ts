@@ -6,14 +6,15 @@ import { Title } from '@angular/platform-browser';
 import { RequestStatusEnum } from '../../shared/enums/requests.status.enum';
 import { STATUSES } from '../../shared/constants/request.statuses';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import ValidatorUtils from '../../shared/validator/validator.utils';
 
 @Component({
   selector: 'requests',
   templateUrl: 'requests.component.html'
 })
 export class RequestsComponent implements OnInit {
-  requests: Requests[] = [];
-  customers: Customer[];
+  public requests: Requests[] = [];
+  public customers: Customer[];
   public statuses = STATUSES;
   public errors: Errors = {errors: {}};
   public isSubmitting = false;
@@ -42,7 +43,7 @@ export class RequestsComponent implements OnInit {
     ]),
     description: new FormControl('', [Validators.minLength(2), Validators.maxLength(200),
     ]),
-  }, {updateOn: 'submit'});
+  }, {updateOn: 'change'});
 
   constructor(private readonly requestsService: RequestsService,
               private readonly customerService: CustomersService,
@@ -51,18 +52,18 @@ export class RequestsComponent implements OnInit {
               private modalService: NgbModal) {
   }
 
-  getControl(controlName): AbstractControl {
-    return this.requestForm.get(controlName);
+  async ngOnInit() {
+    this.titleService.setTitle('Requests');
+    this.requests = await this.requestsService.getAll().toPromise();
+    this.customers = await this.customerService.getAll().toPromise();
   }
 
   get newRequests() {
     return this.requests.filter(request => request.status === RequestStatusEnum.TOBEDONE).length;
   }
 
-  async ngOnInit() {
-    this.titleService.setTitle('Requests');
-    this.requests = await this.requestsService.getAll().toPromise();
-    this.customers = await this.customerService.getAll().toPromise();
+  getControl(controlName): AbstractControl {
+    return this.requestForm.get(controlName);
   }
 
   open(content) {
@@ -105,32 +106,45 @@ export class RequestsComponent implements OnInit {
     this.isSubmitting = false;
   }
 
+  isFieldValid(field: string) {
+    return (!this.requestForm.get(field).valid && this.requestForm.get(field).touched) ||
+      (this.requestForm.get(field).untouched && this.isSubmitting);
+  }
+
+  reset() {
+    this.requestForm.reset();
+    this.isSubmitting = false;
+  }
+
+  closeModal(modal) {
+    this.reset();
+    modal.close();
+  }
+
   createRequest(modal) {
     this.isSubmitting = true;
-    this.errors = {errors: {}};
-    this.companyService.$companies.subscribe((company: Company) => {
-      console.log(company);
-      const requestData = {
-        ...this.requestForm.value,
-        companyId: company.id,
-      };
-      console.log(this.getControl('customerId').value);
-      console.log(requestData);
-      console.log(this.requestForm);
-      // this.requestsService
-      //   .save(requestData).subscribe(
-      //   async (data) => {
-      //     this.isSubmitting = false;
-      //     console.log(data);
-      //     await this.refreshList();
-      //     this.requestForm.reset()
-      //     modal.close();
-      //   },
-      //   err => {
-      //     this.handleError(err);
-      //   }
-      // );
-    });
 
+    if (this.requestForm.valid) {
+      this.errors = {errors: {}};
+      this.companyService.$company.subscribe((company: Company) => {
+        const requestData = {
+          ...this.requestForm.value,
+          companyId: company.id,
+        };
+        this.requestsService
+          .save(requestData).subscribe(
+          async (data) => {
+            this.reset();
+            await this.refreshList();
+            this.requestForm.reset();
+            modal.close();
+          },
+          err => {
+            this.handleError(err);
+          });
+      });
+    } else {
+      ValidatorUtils.validateAllFormFields(this.requestForm);
+    }
   }
 }

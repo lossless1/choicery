@@ -7,7 +7,7 @@ import { Company, Customer } from '../models';
 
 @Injectable()
 export class CompaniesService {
-  public $companies: ReplaySubject<Company> = new ReplaySubject(1);
+  public $company: ReplaySubject<Company> = new ReplaySubject(1);
 
   constructor(
     private apiService: ApiService
@@ -17,7 +17,7 @@ export class CompaniesService {
   get(id: string): Observable<Company> {
     return this.apiService.get('/companies/' + id)
       .pipe(tap((company) => {
-        this.$companies.next(company);
+        this.$company.next(company);
       }));
   }
 
@@ -34,14 +34,14 @@ export class CompaniesService {
     if (id) {
       return this.apiService.put('/companies/' + id, {company})
         .pipe(tap((companies) => {
-            this.$companies.next(companies);
+            this.$company.next(companies);
           }));
 
       // Otherwise, create a new article
     } else {
       return this.apiService.post('/companies/', {company})
         .pipe(tap((companies) => {
-            this.$companies.next(companies);
+            this.$company.next(companies);
           }) );
     }
   }

@@ -1,6 +1,6 @@
 import { Company } from './company.model';
 import { CustomerReferencePerson } from './customer.reference.model';
-import { CustomerContactDetailsPerson } from './customer.contact.details.person';
+import { ContactDetailsPerson } from './contact.details.person';
 
 export interface Customer {
   id: string;
@@ -10,9 +10,11 @@ export interface Customer {
   description: string;
   company: Company;
   referencePerson: CustomerReferencePerson;
-  contactDetails: CustomerContactDetailsPerson;
+  contactDetails: ContactDetailsPerson;
   order: number;
   crmLink: string;
+  logoUrl: string;
+  note: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

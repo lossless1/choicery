@@ -25,6 +25,10 @@
                         <input formControlName="email" type="email" class="form-control" id="input-email"
                                placeholder="name@example.com" >
                       </div>
+                      <app-list-errors
+                        [control]="getControl('email')"
+                        [isSubmitting]="isSubmitting"
+                      ></app-list-errors>
                     </div>
                     <div class="form-group mb-4">
                       <div class="d-flex align-items-center justify-content-between">
@@ -42,6 +46,7 @@
                         </div>
                         <input formControlName="password" [type]="typePasswordInput" class="form-control"
                                id="input-password" placeholder="Password">
+
                         <div class="input-group-append">
                             <span class="input-group-text">
                               <a (click)="togglePasswordView()" data-toggle="password-text"
@@ -51,11 +56,14 @@
                             </span>
                         </div>
                       </div>
+                      <app-list-errors
+                        [control]="getControl('password')"
+                        [isSubmitting]="isSubmitting"
+                      ></app-list-errors>
                     </div>
                     <a>
                       <div class="mt-4">
-                        <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill"
-                                [disabled]="!authForm.valid || isSubmitting">
+                        <button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill">
                           <span class="btn-inner--text">Sign in</span>
                           <span class="btn-inner--icon"><i class="fas fa-long-arrow-alt-right"></i></span>
                         </button>

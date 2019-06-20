@@ -9,14 +9,17 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 })
 export class ListErrorsComponent {
   formattedErrors: string[] = [];
-  formattedServerErrors: string[] = [];
+  formattedServerErrors: string[];
 
   @Input()
   control: AbstractControl;
 
   @Input()
+  isSubmitting: boolean;
+
+  @Input()
   set errorsServer(errorList: ValidationErrors) {
-    this.formattedServerErrors = errorList.errors.error;
+    this.formattedServerErrors = errorList.errors;
   }
 
   get errorList() {
@@ -28,7 +31,8 @@ export class ListErrorsComponent {
     return this.formattedServerErrors;
   }
 
-  isValid(prop: AbstractControl) {
-    return prop.invalid && prop.dirty && prop.touched;
+  isFieldValid() {
+    return (!this.control.valid && this.control.touched) ||
+      (this.control.untouched && this.isSubmitting);
   }
 }

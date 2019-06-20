@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Errors } from '../../core/models';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Company, Errors } from '../../core/models';
 import { UserService } from '../../core/services';
 import { Title } from '@angular/platform-browser';
+import ValidatorUtils from '../../shared/validator/validator.utils';
 
 @Component({
   /**
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
       Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.email
     ]),
     password: new FormControl('', [
-      Validators.required, Validators.minLength(2), Validators.maxLength(20),
+      Validators.required, Validators.minLength(6), Validators.maxLength(20),
     ]),
   });
 
@@ -51,17 +52,31 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  getControl(controlName): AbstractControl {
+    return this.authForm.get(controlName);
+  }
+
+  isFieldValid(field: string) {
+    return (!this.authForm.get(field).valid && this.authForm.get(field).touched) ||
+      (this.authForm.get(field).untouched && this.isSubmitting);
+  }
+
   public submitForm() {
+    console.log(this.errors);
     this.isSubmitting = true;
-    this.errors = {errors: {}};
-    this.userService
-      .attemptAuth(this.authForm.value)
-      .subscribe(
-        data => this.router.navigateByUrl('/admin/requests'),
-        err => {
-          this.errors = err;
-          this.isSubmitting = false;
-        }
-      );
+    if (this.authForm.valid) {
+      this.errors = {errors: {}};
+      this.userService
+        .attemptAuth(this.authForm.value)
+        .subscribe(
+          data => this.router.navigateByUrl('/admin/requests'),
+          err => {
+            this.errors = err;
+            this.isSubmitting = false;
+          }
+        );
+    } else {
+      ValidatorUtils.validateAllFormFields(this.authForm);
+    }
   }
 }

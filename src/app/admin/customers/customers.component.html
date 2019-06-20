@@ -1,33 +1,44 @@
 <div class="main-content position-relative">
-  <!-- Main nav -->
-
-  <!-- Page content -->
   <div class="page-content">
-    <!-- Create project modal -->
-    <div class="modal fade modal-add" id="modal-project-create" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
+    <ng-template #content let-modal>
+      <div class="modal-content">
+        <form [formGroup]="customersForm" (ngSubmit)="createCustomer(modal)">
           <div class="modal-body">
+            <app-list-errors [errorsServer]="errors"></app-list-errors>
             <h6>Company Details</h6>
             <div class="form-group">
               <label class="form-control-label">Company name</label>
-              <input type="text" class="form-control">
+              <input formControlName="name" type="text" class="form-control">
+              <app-list-errors
+                [control]="getControl('name')"
+                [isSubmitting]="isSubmitting"
+              ></app-list-errors>
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col-6">
                   <label class="form-control-label">Logo</label>
                   <div class="logo-upload">
-                    <input type="file" name="file-1[]" id="file-1" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                    <input formControlName="companyLogo" type="file" name="file-1[]" id="file-1"
+                           class="custom-input-file"
+                           data-multiple-caption="{count} files selected" multiple/>
                     <label for="file-1">
                       <i class="fa fa-upload"></i>
                       <span>Choose a file…</span>
                     </label>
+                    <app-list-errors
+                      [control]="getControl('companyLogo')"
+                      [isSubmitting]="isSubmitting"
+                    ></app-list-errors>
                   </div>
                 </div>
                 <div class="col-6">
                   <label class="form-control-label">CRM</label>
-                  <input type="text" class="form-control">
+                  <input formControlName="crmLink" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('crmLink')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
               </div>
             </div>
@@ -35,37 +46,68 @@
               <div class="row">
                 <div class="col-6">
                   <label class="form-control-label">Country</label>
-                  <input type="text" class="form-control">
+                  <input formControlName="country" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('country')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
                 <div class="col-6">
                   <label class="form-control-label">City</label>
                   <input type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('city')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
               </div>
             </div>
 
-            <h6 class="mt-5">Reference Details</h6>
-
+            <h6 class="mt-5">Reference Person Details</h6>
             <div class="form-group">
-              <label class="form-control-label">Fullname</label>
-              <input type="text" class="form-control">
+              <div class="row">
+                <div class="col-6">
+                  <label class="form-control-label ">Fullname</label>
+                  <input formControlName="referencePersonFullName" class="form-control"/>
+                  <app-list-errors
+                    [control]="getControl('referencePersonFullName')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
+                </div>
+                <div class="col-6">
+                  <label class="form-control-label ">Email</label>
+                  <input formControlName="referencePersonEmail" class="form-control"/>
+                  <app-list-errors
+                    [control]="getControl('referencePersonEmail')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
+                </div>
+              </div>
             </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-6">
                   <label class="form-control-label">Photo</label>
                   <div class="logo-upload">
-                    <input type="file" name="file-1[]" id="file-1" class="custom-input-file" data-multiple-caption="{count} files selected" multiple />
+                    <input formControlName="referencePersonPhoto" type="file" name="file-1[]" id="file-1"
+                           class="custom-input-file" data-multiple-caption="{count} files selected" multiple/>
                     <label for="file-1">
                       <i class="fa fa-upload"></i>
                       <span>Choose a file…</span>
                     </label>
+                    <app-list-errors
+                      [control]="getControl('referencePersonPhoto')"
+                      [isSubmitting]="isSubmitting"
+                    ></app-list-errors>
                   </div>
                 </div>
                 <div class="col-6">
                   <label class="form-control-label">Position</label>
-                  <input type="text" class="form-control">
+                  <input formControlName="referencePersonPosition" type="text" class="form-control">
+                  <app-list-errors
+                    [control]="getControl('referencePersonPosition')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
               </div>
             </div>
@@ -73,22 +115,33 @@
               <div class="row">
                 <div class="col-6">
                   <label class="form-control-label mb-0">Contact</label>
-                  <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
+                  <textarea formControlName="contactDetails" class="form-control" data-toggle="autosize"
+                            rows="2"></textarea>
+                  <app-list-errors
+                    [control]="getControl('contactDetails')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
                 <div class="col-6">
                   <label class="form-control-label mb-0">Note</label>
-                  <textarea class="form-control" data-toggle="autosize" rows="2"></textarea>
+                  <textarea formControlName="note" class="form-control" data-toggle="autosize" rows="2"></textarea>
+                  <app-list-errors
+                    [control]="getControl('note')"
+                    [isSubmitting]="isSubmitting"
+                  ></app-list-errors>
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-sm btn-primary rounded-pill" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-sm btn-secondary rounded-pill" (click)="closeModal(modal)"
+            >Cancel
+            </button>
+            <button type="submit" class="btn btn-sm btn-primary rounded-pill">Save</button>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
+    </ng-template>
     <!-- Page title -->
     <div class="page-title mt-4">
       <div class="row justify-content-between align-items-center">
@@ -96,7 +149,8 @@
           <!-- Page title + Go Back button -->
           <div class="d-inline-block">
             <h5 class="h4 d-inline-block font-weight-400 mb-0 text-white">
-              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
+              <a href="#" class="sidenav-toggler mr-2" id="navigation-toggler" data-action="sidenav-pin"
+                 data-target="#sidenav-main"><i class="fas fa-bars"></i></a>
               Customers
             </h5>
           </div>
@@ -116,7 +170,8 @@
               <i class="fas fa-cog mr-2"></i>Settings
             </a>
           </div>
-          <a href="#modal-project-create" class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4" data-toggle="modal">
+          <a class="btn btn-sm btn-white btn-icon-only rounded-circle ml-4"
+             (click)="open(content)">
             <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
           </a>
         </div>
@@ -133,7 +188,8 @@
             </div>
             <input type="text" class="form-control form-control-flush" placeholder="Type and hit enter ...">
             <div class="input-group-append">
-              <a href="#" class="input-group-text bg-transparent" data-action="search-close" data-target="#actions-search"><i class="fas fa-times"></i></a>
+              <a href="#" class="input-group-text bg-transparent" data-action="search-close"
+                 data-target="#actions-search"><i class="fas fa-times"></i></a>
             </div>
           </div>
         </div>
@@ -142,9 +198,11 @@
             <h6 class="d-inline-block mb-0">Customers</h6>
           </div>
           <div class="col text-right">
-            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open" data-target="#actions-search"><i class="fas fa-search"></i></a>
+            <div class="actions"><a href="#" class="action-item mr-3" data-action="search-open"
+                                    data-target="#actions-search"><i class="fas fa-search"></i></a>
               <div class="dropdown mr-3">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                   <i class="fas fa-filter"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -160,7 +218,8 @@
                 </div>
               </div>
               <div class="dropdown" data-toggle="dropdown">
-                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="action-item" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                   <i class="fas fa-ellipsis-h"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -178,50 +237,76 @@
         <table class="table align-items-center">
           <thead>
           <tr>
-            <th scope="col" class="sort" data-sort="order"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Note</th>
             <th scope="col" class="sort" data-sort="cname">Company</th>
             <th scope="col" class="sort" data-sort="cname"></th>
             <th scope="col" class="sort" data-sort="reference">Reference</th>
-            <th scope="col" class="sort">Contacts</th>
+            <th scope="col">CRM</th>
+            <th scope="col">Contact</th>
             <th scope="col" class="sort" data-sort="country">Country</th>
             <th scope="col" class="sort" data-sort="calls">Calls</th>
           </tr>
           </thead>
           <tbody class="list">
           <tr *ngFor="let customer of customers; let i = index">
-            <th class="order" scope="row">{{i + 1}}</th>
+            <td scope="row" class="id">
+              <a [routerLink]="['/admin/customers/' + customer.id]" class="id mb-0 h6 text-sm"><i
+                class="fas fa-chevron-right mr-2"></i>{{i + 1}}</a>
+            </td>
+            <td>
+              <a placement="top" autoClose="outside"
+                 [ngbPopover]="customer.note ? customer.note : 'It\'s empty. Yet.'">
+                <i class="fa-comment-alt" [class.text-muted]="!customer.note" [class.far]="!customer.note"
+                   [class.fas]="customer.note"></i>
+              </a>
+            </td>
+            <td class="cname">
+              <a [routerLink]="['/admin/customers/'+ customer.id]" class="name mb-0 text-sm">{{customer.name}}</a>
+            </td>
             <td>
               <div class="media align-items-center">
                 <div class="customers-logo">
                   <a href="customers/details.html">
-                    <img alt="Logo" src="../assets/img/clients/svg/airbnb.svg" class="clogo">
+                    <img alt="Logo"
+                         [src]="customer.logoUrl ? customer.logoUrl : '../assets/img/customers/cleaning_masters/logo.png'"
+                         class="clogo">
                   </a>
                 </div>
               </div>
             </td>
-            <td class="cname">
-              <a href="customers/details.html" class="name h6 mb-0 text-sm">{{customer.name}}</a>
-            </td>
             <td class="reference">
               <div class="media align-items-center">
-                <div>
+                <div class="mr-3">
                   <div class="avatar-parent-child">
-                    <img alt="Image placeholder" src="../assets/img/theme/light/team-2-800x800.jpg" class="avatar  rounded-circle">
+                    <img alt="Image placeholder" src="../assets/img/theme/light/team-2-800x800.jpg"
+                         class="avatar rounded-circle">
                   </div>
                 </div>
-                <div class="media-body ml-4">
-                  <a href="#" class="name h6 mb-0 text-sm">{{customer.referencePerson.fullname}}</a>
-                  <small class="d-block font-weight-bold">{{customer.referencePerson.position}}</small>
+                <div class="media-body">
+                  <strong>{{customer.referencePerson.fullname}}</strong>
+                  <small>{{customer.referencePerson.position}}</small>
                 </div>
               </div>
             </td>
-            <td class="contacts">
-              <a *ngIf="customer.contactDetails && customer.contactDetails.phone" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="+38093 712 1976"><i class="fas fa-phone-square color-phone"></i></a>
-              <a *ngIf="customer.contactDetails && customer.contactDetails.facebook" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-square color-fb"></i></a>
-              <a *ngIf="customer.contactDetails && customer.contactDetails.linkedin" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fab fa-linkedin color-li"></i></a>
-              <a *ngIf="customer.contactDetails && customer.contactDetails.twitter" href="#" class="mb-0" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter-square color-tw"></i></a>
+
+            <td>
+              <a [href]="customer.crmLink" target="_blank">
+                <i class="fas fa-external-link-alt"></i></a>
             </td>
-            <td class="country"><img alt="flag" class="table-flag" src="../assets/img/icons/flags/us.svg" /> {{customer.city}}</td>
+            <td>
+              <a placement="top" autoClose="outside"
+                 [ngbPopover]="customer.note ? getContactDetails(customer) : 'It\'s empty. Yet.'">
+                <i class="fa-address-card" [class.far]="!getContactDetails(customer)"
+                   [class.fas]="getContactDetails(customer)"></i>
+              </a>
+            </td>
+            <td class="country">
+              <img [ngbPopover]="customer.country ? customer.country : 'Default country'"
+                   placement="top" autoClose="outside" alt="flag" class="table-flag"
+                   src="../assets/img/icons/flags/us.svg"/>
+            </td>
+
             <td class="calls">
               <span class="badge badge-secondary">{{customer.order}}</span>
             </td>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer, Errors } from '../../../core/models';
+import { RequestsService } from '../../../core/services';
+import { Requests } from '../../../core/models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'details-requests',
@@ -7,15 +9,27 @@ import { Customer, Errors } from '../../../core/models';
 })
 
 export class DetailsRequestsComponent implements OnInit {
-  requests: Request[] = [];
-  customers: Customer[];
+  request: Requests;
 
-  public errors: Errors = {errors: {}};
-  public isSubmitting = false;
-
-  constructor() {
+  constructor(private readonly requestsService: RequestsService,
+              private readonly  route: ActivatedRoute,
+              private readonly  router: Router) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.route.url.subscribe(async (url) => {
+
+      const currentRequest = await this.requestsService.get(url[1].path).toPromise();
+
+      if (currentRequest) {
+        this.request = currentRequest;
+      } else {
+        this.router.navigate(['/admin/requests']);
+      }
+    });
+  }
+
+  async delete() {
+    this.requestsService.destroy(this.request.id);
   }
 }
