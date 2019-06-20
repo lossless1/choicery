@@ -19,12 +19,16 @@
                 <div class="col-6">
                   <label class="form-control-label">Logo</label>
                   <div class="logo-upload">
-                    <input formControlName="companyLogo" type="file" name="file-1[]" id="file-1"
+                    <input formControlName="companyLogo" type="file"
+                           id="companyLogo"
+                           #companyLogo
                            class="custom-input-file"
-                           data-multiple-caption="{count} files selected" multiple/>
-                    <label for="file-1">
+                           data-multiple-caption="{count} files selected"
+                           (change)="onFileChange($event, 'companyLogo')"
+                           multiple/>
+                    <label for="companyLogo">
                       <i class="fa fa-upload"></i>
-                      <span>Choose a file…</span>
+                      <span>{{getFileName(companyLogo)}}</span>
                     </label>
                     <app-list-errors
                       [control]="getControl('companyLogo')"
@@ -54,7 +58,7 @@
                 </div>
                 <div class="col-6">
                   <label class="form-control-label">City</label>
-                  <input type="text" class="form-control">
+                  <input formControlName="city" type="text" class="form-control">
                   <app-list-errors
                     [control]="getControl('city')"
                     [isSubmitting]="isSubmitting"
@@ -89,11 +93,14 @@
                 <div class="col-6">
                   <label class="form-control-label">Photo</label>
                   <div class="logo-upload">
-                    <input formControlName="referencePersonPhoto" type="file" name="file-1[]" id="file-1"
-                           class="custom-input-file" data-multiple-caption="{count} files selected" multiple/>
-                    <label for="file-1">
+                    <input formControlName="referencePersonPhoto" type="file"
+                           id="referencePersonPhoto"
+                           #referencePersonPhoto
+                           (change)="onFileChange($event, 'referencePersonPhoto')"
+                           class="custom-input-file"/>
+                    <label for="referencePersonPhoto">
                       <i class="fa fa-upload"></i>
-                      <span>Choose a file…</span>
+                      <span>{{getFileName(referencePersonPhoto)}}</span>
                     </label>
                     <app-list-errors
                       [control]="getControl('referencePersonPhoto')"

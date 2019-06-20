@@ -30,13 +30,12 @@ export class CustomersService {
   save(customer, id?): Observable<Customer> {
     // If we're updating an existing article
     if (id) {
-      return this.apiService.put('/customers/' + id, {customer})
+      return this.apiService.put('/customers/' + id, customer)
         .pipe(map(data => data.customers));
 
       // Otherwise, create a new article
     } else {
-      return this.apiService.post('/customers/', {customer})
-        .pipe(map(data => data.customers));
+      return this.apiService.postFormData('/customers', customer);
     }
   }
 

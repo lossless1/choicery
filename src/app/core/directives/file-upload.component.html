@@ -1,0 +1,16 @@
+<label class="form-control-label">Logo</label>
+<div class="logo-upload">
+  <input formControlName="companyLogo" type="file"
+         id="companyLogo"
+         #companyLogo
+         class="custom-input-file"
+         data-multiple-caption="{count} files selected" multiple/>
+  <label for="companyLogo">
+    <i class="fa fa-upload"></i>
+    <span>{{getFileName(companyLogo)}}</span>
+  </label>
+  <app-list-errors
+    [control]="getControl('companyLogo')"
+    [isSubmitting]="isSubmitting"
+  ></app-list-errors>
+</div>

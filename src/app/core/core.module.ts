@@ -24,6 +24,7 @@ import {
     CustomersService,
     CompaniesService
   ],
-  declarations: []
+  declarations: [
+  ]
 })
 export class CoreModule { }

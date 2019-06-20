@@ -32,6 +32,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     RequestsComponent,
     NavbarComponent,
+    // FileUploadComponent
   ],
   providers: [
   ],
