@@ -19,7 +19,8 @@
                 <div class="col-6">
                   <label class="form-control-label">Logo</label>
                   <div class="logo-upload">
-                    <input formControlName="companyLogo" type="file"
+                    <input type="hidden" name="fileHidden" formControlName="companyLogo"/>
+                    <input type="file"
                            id="companyLogo"
                            #companyLogo
                            class="custom-input-file"

@@ -38,7 +38,7 @@ export class CustomersComponent implements OnInit {
       Validators.required, Validators.minLength(5), Validators.maxLength(40),
       Validators.email
     ]),
-    referencePersonPhoto: new FormControl(null, []),
+    referencePersonPhoto: new FormControl('', [Validators.required]),
     referencePersonPosition: new FormControl('referencepersonpos', [
       Validators.minLength(3), Validators.maxLength(40)
     ]),
@@ -75,9 +75,10 @@ export class CustomersComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       reader.readAsDataURL(file);
+      console.log(file);
       reader.onload = (a) => {
         console.log(a);
-        this.customersForm.patchValue({[controlName]: file});
+        this.customersForm.get(controlName).setValue(file ? file.name : '');
       };
     }
   }
@@ -143,10 +144,10 @@ export class CustomersComponent implements OnInit {
         formData.append('companyId', company.id);
         console.log(formData.get('companyId'));
 
-        const photo = new FormData();
-        photo.append('companyLogo', this.customersForm.get('companyLogo').value);
+        // const photo = new FormData();
+        // photo.append('companyLogo', this.customersForm.get('companyLogo').value);
         this.customersService
-          .save(photo).subscribe(
+          .save(formData).subscribe(
           async () => {
             await this.refreshList();
             // this.reset();`
